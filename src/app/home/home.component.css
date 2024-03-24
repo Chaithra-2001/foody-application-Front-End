@@ -1,0 +1,32 @@
+mat-card {
+    width: 260px;
+    height: 250px;
+    display: inline-block;
+    margin: 20px;
+}
+
+mat-card img{
+    height: 200px;
+}
+.dashboard-card {
+ 
+
+  height: 100%;
+ 
+}
+
+a {
+    text-decoration: none;
+}
+
+a :hover {
+    color: greenyellow;
+}
+
+/* Add this to your component's style or global styles */
+.list:hover .dashboard-card {
+  /* Apply your hover styles here */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.05);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+}

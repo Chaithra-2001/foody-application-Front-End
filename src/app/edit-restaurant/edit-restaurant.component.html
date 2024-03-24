@@ -1,0 +1,23 @@
+<form [formGroup]="editform" novalidate>
+    <mat-card class="example-card" >
+        <h1  style="color: rgb(216, 157, 85);">Update Restaurant Details</h1>
+        
+        <mat-form-field>
+            <mat-label>Restaurant ID</mat-label>
+            <input matInput formControlName="restId" readonly>
+        </mat-form-field>
+        
+        <mat-form-field>
+            <mat-label>Restaurant Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+         
+        <mat-form-field>
+            <mat-label>Restaurant Location</mat-label>
+            <input matInput formControlName="location">
+        </mat-form-field>
+         
+        <button mat-raised-button color="primary"  style="background-color: rgb(216, 157, 85);"   (click)="editRestaurant()">Edit Restaurant Details</button>
+    </mat-card>
+</form>
+  

@@ -1,0 +1,91 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav   style="background-color:white;" #drawer class="sidenav" fixedInViewport   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"[mode]="'side'"[opened]="(isHandset$ | async) === false">
+    <mat-toolbar   *ngIf="ass.isAdmin ||ass. isUser"      style="margin-left: 5px;"><mat-icon style="margin-right: 10px;color: rgb(50, 55, 61);">account_circle</mat-icon >Hii</mat-toolbar>
+
+    <mat-nav-list>
+      <!-- Only show "View My Restaurants", "Add Restaurants", and "Add Dishes" for admins -->
+      <a mat-list-item  *ngIf="ass.isAdmin && ass.isUser==false" routerLink="ViewMyRestaurants">
+        <mat-icon class="icon-list">restaurant</mat-icon>View My restaurants
+      </a>
+      <a mat-list-item *ngIf="ass.isAdmin && !ass.isUser" routerLink="addRestaurants">
+        <mat-icon class="icon-list">add</mat-icon>Add Restaurants
+      </a>
+      <a mat-list-item *ngIf="ass.isAdmin && !ass.isUser" routerLink="addDishes">
+        <mat-icon class="icon-list">add</mat-icon>Add Dishes
+      </a>
+    
+      <!-- Only show "Favorite Restaurant" and "Favorite Dish" for regular users -->
+      <a mat-list-item  *ngIf="ass.isAdmin==false && ass.isUser==true" routerLink="favoriteRestaurant">
+        <mat-icon class="icon-list">favorite</mat-icon>Favorite Restaurant
+      </a>
+      <a mat-list-item  *ngIf="ass.isAdmin==false && ass.isUser==true" routerLink="/favoriteDish">
+        <mat-icon class="icon-list">favorite</mat-icon>Favorite Dish
+      </a>
+     
+      <!-- These links can be visible for both admins and regular users -->
+      <a mat-list-item   *ngIf="!ass.isAdmin && !ass.isUser"   routerLink="merchantRegister">
+        <mat-icon class="icon-list">app_registration</mat-icon>Merchant-Register
+      </a>
+      <a mat-list-item *ngIf="!ass.isAdmin && !ass.isUser"     routerLink="Login">
+        <mat-icon class="icon-list">login</mat-icon>Login
+      </a>
+      <!-- <a mat-list-item routerLink="merchantRegister" *ngIf="!ass.isAdmin && !ass.isUser">
+        <mat-icon class="icon-list">app_registration</mat-icon>Merchant-Register
+      </a>
+      <a mat-list-item routerLink="merchantLogin" *ngIf="!ass.isAdmin && !ass.isUser">
+        <mat-icon class="icon-list">login</mat-icon>Merchant-Login
+      </a> -->
+
+     
+      <!-- Logout is common for both roles -->
+      <a mat-list-item  *ngIf="ass.isAdmin || ass.isUser"   (click)="logout()">
+        <mat-icon class="icon-list">logout</mat-icon>Logout
+      </a>
+    </mat-nav-list>
+
+ </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar style="background-color:white; height: 10%; height: auto;">
+
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <mat-nav-list> 
+        <img src="../../assets/YUMMY SWIFT (3).png" alt=""  routerLink="/"   width="30%" height="20%" style="border-radius: 20%; background-color: cadetblue;"> 
+      
+      </mat-nav-list>
+
+      <mat-nav-list style="display: flex; margin-left: 700px; padding: 20px;">
+        <a mat-list-item   *ngIf="!ass.isAdmin && !ass.isUser"   routerLink="UserRegister" ><mat-icon class="icon-list">app_registration</mat-icon>SignUp</a>
+        <!-- <a mat-list-item    *ngIf="!ass.isAdmin && !isUser"    routerLink="UserLogin" style="margin-left: 30px;" ><mat-icon class="icon-list">login</mat-icon>Login</a> -->
+        <i class="bi bi-heart-fill"></i>
+      </mat-nav-list>
+
+     
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

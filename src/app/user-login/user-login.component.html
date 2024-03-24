@@ -1,0 +1,42 @@
+
+
+<form class="example-form" (ngSubmit)="login()" #loginpage="ngForm">
+    <mat-card class="example-card">
+    
+        <h1    style="color: rgb(216, 157, 85); font-weight: bolder;">Sign In</h1>
+
+
+        <mat-form-field >
+            <mat-label>Email Id</mat-label>
+            <input matInput type="text" #emailId="ngModel" name="credentials.emailId" [(ngModel)]="UserLoginData.emailId" required >
+            <mat-error *ngIf="emailId?.errors?.['required']">Email Id  is mandatory</mat-error>
+        
+        </mat-form-field>
+
+   
+      <mat-form-field >
+          <mat-label>Password</mat-label>
+        <input  matInput  #password="ngModel" name="credentials.password" [(ngModel)]="UserLoginData.password"
+        [type]="hide ? 'password' : 'text'"  required >
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="password?.errors?.['required']">Password is mandatory</mat-error>
+   </mat-form-field>
+
+
+      
+   <div>
+    <button mat-raised-button   color="primary" type="submit" [disabled]="loginpage.invalid"
+      style=" height: 50px; border-radius: 10px; width: 200px;    background-color: rgb(216, 157, 85);"    >SIGN IN</button>
+    <button mat-raised-button  type="reset"
+      style=" height: 50px; border-radius: 10px; margin-left: 100px; width: 200px;background-color: rgb(185, 181, 176); " >RESET</button>
+  </div>
+
+  <b style="margin-top: 30px;color: black;">Not a member?<a routerLink="/UserRegister" style="margin-left: 10px;">Sing up now</a></b>
+    </mat-card>
+  </form>
+
+
+
+

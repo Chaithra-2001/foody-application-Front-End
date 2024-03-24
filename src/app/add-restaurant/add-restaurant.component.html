@@ -1,0 +1,28 @@
+
+  <form [formGroup]="userForm" (ngSubmit)="addRestaurant()"  >
+    <mat-card class="example-card" >
+      <h1>Add Restaurant Details</h1>
+  
+      <mat-form-field>
+        <mat-label>Restaurant ID</mat-label>
+        <input matInput formControlName="restId">
+        <mat-error *ngIf="restId?.errors?.['required']">Restaurant id is required </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Restaurant Name</mat-label>
+        <input matInput formControlName="name">
+        <mat-error *ngIf="name?.errors?.['required']">Restaurant name is required </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Restaurant Location</mat-label>
+        <input matInput formControlName="location">
+        <mat-error *ngIf="location?.errors?.['required']">Location is required </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button [disabled]="userForm.invalid" style="background-color: rgb(216, 157, 85);" type="submit">Add Restaurant </button>
+    </mat-card>
+  </form>
+  
+  

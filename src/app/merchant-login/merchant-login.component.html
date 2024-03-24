@@ -1,0 +1,75 @@
+<!-- 
+      <form  class="example-form" (ngSubmit)="login()" #loginpage="ngForm">
+          <h1 >Login</h1>
+  
+  
+              <mat-form-field >
+                  <mat-label>emailId</mat-label>
+                  <input matInput type="text" #emailId="ngModel" name="credentials.emailId" [(ngModel)]="merchantLoginData.emailId" >
+              
+              </mat-form-field>
+     
+         
+            <mat-form-field >
+                <mat-label>Password</mat-label>
+              <input  matInput  #password="ngModel" name="credentials.password" [(ngModel)]="merchantLoginData.password"
+                required >
+
+         </mat-form-field>
+   
+          <div class="button-field">
+          
+              <button mat-raised-button  type="submit" >login</button>
+          
+  
+          </div>
+          
+          
+      </form> -->
+      <form class="example-form" (ngSubmit)="login()" #loginpage="ngForm">
+        <mat-card class="example-card">
+        
+            <h1  style="color: rgb(216, 157, 85); font-weight: bolder;">Sign In</h1>
+    
+    
+            <mat-form-field >
+                <mat-label>Email Id</mat-label>
+                <input matInput type="text" #emailId="ngModel" name="credentials.emailId" [(ngModel)]="merchantLoginData.emailId" required email >
+                 
+          
+              <mat-error *ngIf="emailId?.errors?.['email'] && emailId?.touched">Enter a valid email address</mat-error>
+                <mat-error *ngIf="emailId?.errors?.['required']">emailId is required</mat-error> 
+         
+            </mat-form-field>
+    
+       
+          <mat-form-field >
+              <mat-label>Password</mat-label>
+            <input  matInput  #password="ngModel" name="credentials.password" [(ngModel)]="merchantLoginData.password"
+              required >
+              <!-- <div *ngIf="password?.touched">
+                <mat-error *ngIf="password?.errors?.['required']">Password is mandatory</mat-error>
+                <mat-error *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters long</mat-error>
+
+            </div> -->
+          
+              <mat-error *ngIf="password?.errors?.['required']">Password is mandatory</mat-error>
+              <!-- <mat-error *ngIf="password?.errors?.['minlength']">Password must be at least 8 characters long</mat-error> -->
+
+      
+       </mat-form-field>
+    
+    
+          
+       <div>
+        <button mat-raised-button color="primary"  [disabled]="loginpage.invalid" type="submit"
+          style=" height: 50px; border-radius: 10px; width: 200px;background-color: rgb(216, 157, 85);" >SIGN IN</button>
+        <button mat-raised-button color="accent" type="reset"
+          style=" height: 50px; border-radius: 10px; margin-left: 80px; width: 200px; ">RESET</button>
+      </div>
+    
+      <b style="margin-top: 30px;color: black;">Not a member?<a routerLink="/merchantRegister" style="margin-left: 10px;">Sing up now</a></b>
+        </mat-card>
+      </form>
+    
+

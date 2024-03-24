@@ -1,0 +1,33 @@
+<form [formGroup]="editDishForm" novalidate>
+    <mat-card class="example-card"  style="margin-bottom: 50px; margin-top: 10px;">
+      <h1>Update Dish Details</h1>
+   
+
+      <mat-form-field>
+        <mat-label>Dish ID</mat-label>
+        <input matInput formControlName="dishID" readonly>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Dish Name</mat-label>
+        <input matInput formControlName="dishname">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Category</mat-label>
+        <input matInput formControlName="category">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Price</mat-label>
+        <input  type="number"   matInput formControlName="price">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Rating</mat-label>
+        <input type="number"  matInput formControlName="rating">
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary"  type="submit" style="background-color: rgb(216, 157, 85);"   (click)="editDish()">Edit Dish Details</button>
+    </mat-card>
+  </form>

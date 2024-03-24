@@ -1,0 +1,47 @@
+
+
+  <form  [formGroup]="userForm" (ngSubmit)="submitForm()">
+    <mat-card class="example-card"  style="margin-bottom: 50px; margin-top: 10px;">
+
+
+
+      <h1>Add Dishes</h1>
+
+      <mat-label>Select Restaurant Here</mat-label>
+      <select formControlName="restId" style="width: 50%; height: 100%;">
+        <option *ngFor="let restaurant of restaurants" style="height: 30%;"[value]="restaurant.restId">{{ restaurant.restId }}</option>
+        <mat-error *ngIf="restId?.errors?.['required']">Restaurant Id is required </mat-error>
+      </select><br>
+
+      <mat-form-field>
+        <mat-label>Dish ID</mat-label>
+        <input matInput formControlName="dishID" >
+        <mat-error *ngIf="dishID?.errors?.['required']">Dish Id is required </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Dish Name</mat-label>
+        <input matInput formControlName="dishname">
+        <mat-error *ngIf="dishname?.errors?.['required']">Dish name is required </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Category</mat-label>
+        <input matInput formControlName="category">
+        <mat-error *ngIf="category?.errors?.['required']">Category is required </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Price</mat-label>
+        <input matInput type="number" formControlName="price">
+        <mat-error *ngIf="price?.errors?.['required']">Price is required </mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Dish Rating</mat-label>
+        <input matInput type="number" formControlName="rating">
+        <mat-error *ngIf="rating?.errors?.['required']">Rating is required </mat-error>
+      </mat-form-field>
+      <button mat-raised-button [disabled]="userForm.invalid" style="background-color: rgb(216, 157, 85);" type="submit">Add Dish </button>
+    </mat-card>
+  </form>

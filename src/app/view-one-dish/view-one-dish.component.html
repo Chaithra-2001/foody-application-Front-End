@@ -1,0 +1,18 @@
+<div class="viewone-container">
+
+    <div style="display: flex; min-height: 100%;">
+        <div >
+            <img src="../../assets/dishes/{{displayOneDish.dishID}}.jpg" alt="" >
+        </div>
+        <div class="contents">
+            <h1 style='font-weight:bolder' class="cake-name">{{displayOneDish.dishname |titlecase}}</h1>
+
+            <h1> ₹{{displayOneDish.price}}</h1>
+            <h4>{{displayOneDish.category}}</h4>
+           
+             <h4 style="margin-top: 10px;"><mat-icon
+                style="color: darkgoldenrod; margin-top: 2px; margin-right: 5px;">star</mat-icon>{{displayOneDish.rating}}/5
+             </h4> <a mat-list-item   *ngIf="ass.isAdmin==false || ass.isUser==true"    (click)="addtofav()"><mat-icon class="icon-list">favorite</mat-icon></a>
+       </div>
+    </div>
+</div>

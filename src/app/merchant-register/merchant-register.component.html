@@ -1,0 +1,223 @@
+<!-- <!-- <div class="container">
+    <div class="form-container">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <h1>Register</h1>
+        <label>Email ID:</label>
+        <input type="text" formControlName="emailId"><br>
+          <label>Password:</label>
+        <input type="password" formControlName="password"><br>
+               <label>Merchant Name:</label>
+        <input type="text" formControlName="merchantName"><br>
+  
+        <label>Location:</label>
+        <input type="text" formControlName="location"><br>
+  
+        <label>Phone Number:</label>
+        <input type="text" formControlName="phoneNumber"><br>
+  
+        <button type="submit">Submit</button>
+        <b style="margin-top: 30px;color: rgb(16, 19, 22);">Already a member?<a routerLink="/merchantLogin"
+          style="margin-left: 10px;color: rgb(28, 29, 29);">Login</a></b>
+      </form>
+    </div>
+  </div> -->
+
+  <!-- <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card"  style="margin-bottom: 50px; margin-top: 10px;">
+      <h1  style="color: rgb(242, 149, 28);">Register</h1>
+   
+
+      <mat-form-field>
+        <mat-label>Merchant Name</mat-label>
+        <input matInput  type="text" formControlName="merchantName">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email ID</mat-label>
+        <input matInput type="text" formControlName="emailId" >
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+      </mat-form-field>
+  
+
+  
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" formControlName="location">
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary"    style="background-color: rgb(216, 157, 85);"        >Sign Up </button>
+      <b style="margin-top: 30px;color: rgb(16, 19, 22);">Already a member?<a routerLink="/merchantLogin"
+        style="margin-left: 10px;color: rgb(28, 29, 29);">Login</a></b>
+    </mat-card>
+  </form> -->
+  <!-- <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card"  style="margin-bottom: 50px; margin-top: 10px;">
+      <h1  style="color: rgb(242, 149, 28);">Register</h1>
+   
+      <mat-form-field>
+        <mat-label>Merchant Name</mat-label>
+        <input matInput  type="text" formControlName="merchantName">
+        <div *ngIf="userForm.get('merchantName')?.invalid && userForm.get('merchantName')?.touched">
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('required')">Merchant Name is required</mat-error>
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('minlength')">Merchant Name should be more than 4 characters</mat-error>
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('pattern')">Merchant Name should contain only alphabets</mat-error>
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email ID</mat-label>
+        <input matInput type="text" formControlName="emailId" >
+        <input matInput formControlName="emailId">
+        <div *ngIf="emailId?.touched">
+            <mat-error *ngIf="emailId?.errors?.['required']">E-Mail Id is Mandatory</mat-error>
+        </div>
+
+
+
+      </mat-form-field>
+    
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <i [ngClass]="visible ? 'fa fa-eye' : 'fa fa-eye-slash'" (click)="togglePasswordVisibility()"></i>
+        <input type="{{visible ? 'text' : 'password'}}" matInput formControlName="password">
+        <div *ngIf="password?.touched">
+            <mat-error *ngIf="password?.errors?.['required']">Password Is Mandatory </mat-error>
+        </div>
+
+
+
+      </mat-form-field>
+  
+  
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" formControlName="location">
+        <div *ngIf="location?.touched">
+          <mat-error *ngIf="location?.errors?.['required']">location is Mandatory</mat-error>
+      </div>
+
+
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <div *ngIf="phoneNumber?.touched">
+          <mat-error *ngIf="phoneNumber?.errors?.['required']">Mobile No is Mandatory</mat-error>
+      </div>
+
+
+
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary"    style="background-color: rgb(216, 157, 85);"        >Sign Up </button>
+      <b style="margin-top: 30px;color: rgb(16, 19, 22);">Already a member?<a routerLink="/merchantLogin"
+        style="margin-left: 10px;color: rgb(28, 29, 29);">Login</a></b>
+    </mat-card>
+  </form> --> 
+
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card" style="margin-bottom: 50px; margin-top: 10px;">
+      <h1 style="color: rgb(242, 149, 28);">Register</h1>
+  
+      <mat-form-field>
+        <mat-label>Merchant Name</mat-label>
+        <input matInput type="text" formControlName="merchantName">
+        <div *ngIf="userForm.get('merchantName')?.invalid && userForm.get('merchantName')?.touched">
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('required')">Merchant Name is required</mat-error>
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('minlength')">Merchant Name should be more than 4 characters</mat-error>
+          <mat-error *ngIf="userForm.get('merchantName')?.hasError('pattern')">Merchant Name should contain only alphabets</mat-error>
+        </div>
+      </mat-form-field>
+  
+      <!-- <mat-form-field>
+        <mat-label>Email ID</mat-label>
+        <input matInput type="text" formControlName="emailId">
+        <div *ngIf="userForm.get('emailId')?.invalid && userForm.get('emailId')?.touched">
+          <mat-error *ngIf="userForm.get('emailId')?.hasError('required')">Email ID is required</mat-error>
+        </div>
+      </mat-form-field> -->
+
+
+      <mat-form-field>
+      <mat-label>Email Id </mat-label>
+      <input matInput formControlName="emailId">
+      <mat-error *ngIf="emailId?.errors?.['required']">Email id is required </mat-error>
+      <mat-error *ngIf="emailId?.errors?.['pattern']">Enter valid email address </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+      <!-- <mat-error *ngIf="password?.errors?.['pattern']">Enter a strong password (at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character)</mat-error> -->
+    </mat-form-field>
+    
+
+    
+      <!-- <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="{{ visible ? 'text' : 'password' }}" formControlName="password">
+        <mat-icon matSuffix (click)="togglePasswordVisibility()">{{ visible ? 'visibility_off' : 'visibility' }}</mat-icon>
+        <div *ngIf="userForm.get('password')?.invalid && userForm.get('password')?.touched">
+          <mat-error *ngIf="userForm.get('password')?.hasError('required')">Password is required</mat-error>
+          <mat-error *ngIf="userForm.get('password')?.hasError('pattern')">Enter strong password</mat-error>
+        </div>
+      </mat-form-field> -->
+
+
+      <!-- <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.errors?.['required']">Password is required </mat-error>
+       <mat-error *ngIf="password?.errors?.['passwordPattern']">Enter the strong password</mat-error> 
+      </mat-form-field> -->
+  
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" formControlName="location">
+        <div *ngIf="userForm.get('location')?.invalid && userForm.get('location')?.touched">
+          <mat-error *ngIf="userForm.get('location')?.hasError('required')">Location is required</mat-error>
+        </div>
+      </mat-form-field>
+  
+      <!-- <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <div *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched">
+          <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+        </div>
+      </mat-form-field> -->
+
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <div *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched">
+          <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+          <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('pattern')">Phone number should be at least 10 digits</mat-error>
+        </div>
+      </mat-form-field>
+  
+      <button mat-raised-button [disabled]="userForm.invalid" color="primary" style="background-color: rgb(216, 157, 85);">Sign Up</button>
+      <b style="margin-top: 30px;color: rgb(0, 8, 93);">Already a member?<a routerLink="/Login" style="margin-left: 10px;color: rgb(33, 75, 226);">Login</a></b>
+    </mat-card>
+  </form>
+  

@@ -78,6 +78,16 @@ export class AddToFavRestaurantComponent implements OnInit {
       verticalPosition: 'bottom',
     });
   }
-
+  favDishh=true;
+  displayMessage(){
+    if(this.displayRestaurantss.length==0){
+      this.favDishh=false;
+      return false;
+      
+    }else
+    this.favDishh=true;
+  
+    return true;
+    }
 
 }

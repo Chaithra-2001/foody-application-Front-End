@@ -1,10 +1,11 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { Favrestaurant } from '../models/favrestaurant';
 import { favdish } from '../models/favdish';
 import { User } from '../models/user';
+import { Dish } from '../models/dishes';
 
 @Injectable({
   providedIn: 'root'
@@ -70,9 +71,58 @@ deleteDishFromFavorites(dishID:string){
   return this.httpclient.delete(`http://localhost:8088/api/v3/user/deletefavDish/${dishID}`);
 }
 
-getUser():Observable<User>{
-  const url = `http://localhost:8088/api/v3/user/getuserdetails`; 
-  return this.httpclient.get<User>(url);   
+// getUser():Observable<User>{
+//   const url = `http://localhost:8088/api/v3/user/getuserdetails`; 
+//   return this.httpclient.get<User>(url);   
+// }
+getUser(){
+  let httpHeaders = new HttpHeaders({
+    'authorization': 'Bearer ' +localStorage.getItem('token'),
+  })
+  let requestOption={headers:httpHeaders}
+  return this.httpclient.get("http://localhost:8088/api/v3/user/getuserdetails",requestOption)
+}
+
+emptyList=[]
+cancelOrder(){
+  alert("afaf")
+  this.selectedDish=this.emptyList;
+
+}
+dishNull(){
+  this.selectedDish=[]
+}
+
+  selectedDish: { name: string, price: number, quantity: number,cuisine:string,imageUrl:string }[] = [];
+  billAmount: number = 0;
+  addDishTobill(dish: { name: string, price: number,cuisine:string,imageUrl:string }) {
+    const existingDish = this.selectedDish.find(item => item.name === dish.name);
+    if (existingDish) {
+      existingDish.quantity++;
+    } else {
+      this.selectedDish.push({ ...dish, quantity: 1 });
+    }
+  this.calculateBillAmount()
+  }
+  calculateBillAmount() {
+    this.billAmount = this.selectedDish.reduce((total, dish) => {
+      return total + (dish.price * dish.quantity);
+    }, 0);
+  }
+
+  sendMail( details:any){
+ 
+    return this.httpclient.post("http://localhost:9002/mail/sendMail",details);
+  }
+
+
+
+addOrder(order:any,date:any,bill:any){
+  
+  console.log(order);
+
+  return this.httpclient.post("http://localhost:8088/api/v3/userOrder/user/addOrder/"+date+"/"+bill ,order);
+
 }
 
 

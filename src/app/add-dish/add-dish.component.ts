@@ -56,16 +56,19 @@ get rating(){
 }
 
 
+dataloaded:boolean=false;
 
-
-
+restaurantsPresent: boolean = false; // Flag to track if restaurants are present
   fetchRestaurants() {
     this.ms.merchantRestaurant().subscribe(
       (response: Restaurant[]) => {
         this.restaurants = response;
+        this.restaurantsPresent = this.restaurants.length > 0;
+this.dataloaded=true
       },
       (error) => {
         console.error('Error fetching restaurants:', error);
+        this.dataloaded=true
       }
     );
   }
@@ -74,7 +77,23 @@ get rating(){
     const dishes = this.userForm.value;
     this.addDishes(restaurantId, dishes);
   }
+
+  url:string= "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
+
+  selectedFile:any=File
+  converter(file: any){
+    if(file.target.files){
+      const reader=new FileReader();
+      reader.readAsDataURL(file.target.files[0]);
+      reader.onload=(event:any)=>{
+        this.url=event.target.result;
+      }
+    }}
+
+
+
   addDishes(restaurantId: string, dishes: Dish[]) {
+    this.userForm.value.imageUrl=this.url
     // console.log('Token:', this.ms.getToken());
     this.ms.addDish(restaurantId, dishes).subscribe(
       (response) => {

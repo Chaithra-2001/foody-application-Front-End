@@ -29,7 +29,7 @@ export class ViewMyRestaurantsComponent {
    getAllRestaurantsss() {
      this.ms.merchantRestaurant().subscribe(
        (response) => {
-         this.displayRestaurantss = response;  // Use response.body to access the data
+         this.displayRestaurantss = response;  
        },
        (error) => {
          console.error('Error fetching restaurants:', error);

@@ -20,6 +20,12 @@
         <input matInput formControlName="location">
         <mat-error *ngIf="location?.errors?.['required']">Location is required </mat-error>
       </mat-form-field>
+
+    
+      <div class="selectFile">
+        <p style="margin-bottom: -5vh;margin-right: 13vw;">Select Restaurant Image</p>
+        <input  style="margin-left: 2.5vw;" (change)="converter($event)" type="file"  formControlName="imageUrl" />
+    </div>
   
       <button mat-raised-button [disabled]="userForm.invalid" style="background-color: rgb(216, 157, 85);" type="submit">Add Restaurant </button>
     </mat-card>

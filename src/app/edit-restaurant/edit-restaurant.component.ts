@@ -24,26 +24,20 @@ export class EditRestaurantComponent {
     // Initialize the FormGroup in the constructor
     this.editform = this.formbuilder.group({
       restId: '',
-      name: '',
+      name: '',imageUrl:' ',
       location: '',
+
       dishList: []
     });
   }
 
 
-// //   // ngOnInit(): void {
-// //   //   this.activatedRoute.paramMap.subscribe(params => {
-// //   //     let id = params.get("id") ?? 0;
-// //   //     this.cakeserv.getCake(+id).subscribe(data => {
-// //   //       this.mycake = data;
-// //   //     })
-// //   //   })
-// //   // }
+
 ngOnInit(): void {
   this.activatedRoute.paramMap.subscribe(params => {
     const idParam = params.get('id');
     if (idParam !== null) {
-      const id = +idParam; // Convert idParam to a number
+      const id = +idParam; 
       if (!isNaN(id)) {
         this.id = id; // Assign the value to the class property
         this.getRestaurantDetails(id);
@@ -56,20 +50,12 @@ ngOnInit(): void {
   });
 }
 
-
-// getRestaurantDetails(id: number): void {
-//   this.ms.merchantRestaurant().subscribe(data => {
-//     this.editform.patchValue(data); // Update the form with fetched data
-//   }, error => {
-//     console.error('Error fetching restaurant details:', error);
-//   });
-// }
 getRestaurantDetails(id: number): void {
   this.ms.merchantRestaurant().subscribe(
     (data: Restaurant[]) => {
       const restaurant = data.find((r: Restaurant) => r.restId === id.toString());
       if (restaurant) {
-        this.editform.patchValue(restaurant); // Update the form with fetched data
+        this.editform.patchValue(restaurant); 
       } else {
         console.error('Restaurant not found with id:', id);
       }
@@ -83,12 +69,12 @@ getRestaurantDetails(id: number): void {
   editRestaurant() {
     if (this.id) {
       this.ms.editRestaurant( this.editform.value).subscribe(data => {
-        // Handle success or perform any additional actions
+   
         console.log('Restaurant edited successfully:', data);
         this.openSnackBar("Restaurant edited successfully:");
         this.router.navigateByUrl('/ViewMyRestaurants');
       }, error => {
-        // Handle error
+       
         console.error('Error editing restaurant:', error);
         this.openSnackBar("Error editing restaurant");
       });
@@ -101,6 +87,7 @@ getRestaurantDetails(id: number): void {
   editRestaurants: Restaurant = {
     restId: '',
     name: '',
+    imageUrl:'',
     location: '',
     dishList: []
   };
@@ -119,7 +106,7 @@ getRestaurantDetails(id: number): void {
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 3000 // Duration for which the snackbar will be displayed (in milliseconds)
+      duration: 3000
     });
   }
 

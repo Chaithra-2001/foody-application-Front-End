@@ -1,50 +1,38 @@
-<div class="grid-container" >
-  <div class="imge">
-    <div style="display: flex; margin-left: 35%;">
-   
-    </div>
-   
-
-  </div>
-
-
-  <mat-grid-list cols="4" rowHeight="350px"  style="margin-bottom: 40px; margin-top: 50px; margin-left: 30px;" >
-
-    <mat-grid-tile *ngFor="let restaurant of displayDishes" class="list hover-effect">
-      <mat-card  style="margin-bottom: 40px; border-radius: 20px; margin-left: 30px;"  class="dashboard-card" >
-        <mat-card-header>
-          
-           <h1>{{restaurant.name|titlecase}}</h1> 
-
-        
-
-        </mat-card-header>
-        <img src="../../assets/dishes/{{restaurant.dishID}}.jpg" width="100%" height="85%">
-        <mat-card-content class="dashboard-card-content">
-
-        </mat-card-content>
-        <!-- <img src="../../assets/{{cake.id}}.jpg" alt="" class="img">
-
-        <img [src]="cake.imageurl" alt=""  class="img"> -->
 
 
 
-        <h3 style="text-align: start; margin-left: 70px;">
-          ₹{{restaurant.price}} 
-          
-        </h3>
+<mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 20px; width: 100%; " *ngIf="displayMessage(); else emptyBlock">
+  <mat-grid-tile *ngFor="let restaurant of displayDishes" class="list">
+    <mat-card class="dashboard-card"  style="margin-left: 40px; border-radius: 20px;width: 300%;"  >
+            
+      <img  style="padding: 15px;border-radius: 20px;height: 200px;padding-top: 20px;" [src]="restaurant.imageUrl" alt="image not found" width="100%" height="100%">
+      <mat-card-content class="dashboard-card-content">
+        <h1 style="font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif;text-align: center;">{{restaurant.name|titlecase}}</h1> 
+       
+        <h3 style="font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif;text-align: center;"> ₹ {{restaurant.price}}    |    {{restaurant.category}}   |  <i class="fa fa-star me-3" style="color: rgb(235, 246, 239);background-color: rgb(18, 9, 137);border-radius: 50%;padding: 3px;"></i> 5/{{restaurant.rating}}</h3> 
       
-    
-      
+      <button style="margin-left: 20px; border: 1px solid rgb(247, 246, 247); margin-bottom: 20px;"    (click)="deleteDish(restaurant.dishID)">
+        <mat-icon style="color: rgb(96, 155, 244); font-size: xx-large; " class="search-icon" aria-hidden="false"
+            aria-label="Delete icon" fontIcon="delete">
+        </mat-icon>
+    </button>
+      </mat-card-content>
 
-        <div>
-          <button (click)="deleteDish(restaurant.dishID)">
-            <mat-icon style="color: blue; font-size: xx-large;" class="search-icon" aria-hidden="false"
-                aria-label="Example home icon" fontIcon="delete">
-            </mat-icon>
-        </button>
-        </div>
-      </mat-card>
-    </mat-grid-tile>
     
+      <!-- <div>
+        <button (click)="deleteDish(restaurant.dishID)">
+          <mat-icon style="color: blue; font-size: xx-large;" class="search-icon" aria-hidden="false"
+              aria-label="Example home icon" fontIcon="delete">
+          </mat-icon>
+      </button>
+      </div> -->
+    
+
+
+  </mat-card>
+  </mat-grid-tile>
 </mat-grid-list>
+
+
+
+<ng-template #emptyBlock><h1 class="message">Oops! You have no favourite dishes 😥</h1></ng-template> 

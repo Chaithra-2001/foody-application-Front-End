@@ -3,6 +3,9 @@ import { MerchantService } from '../services/merchant.service';
 import { Router } from '@angular/router';
 import { Restaurant } from '../models/restaurant';
 import { UserService } from '../services/user.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { Favrestaurant } from '../models/favrestaurant';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,9 @@ import { UserService } from '../services/user.service';
 export class HomeComponent implements OnInit {
   userEmail:any;
   restaurantId: any|string;
-  constructor(private ms:MerchantService,private route:Router,private us:UserService){}
+  constructor(private ms:MerchantService,private route:Router,private us:UserService,public ass:AuthenticationService,private snackBar:MatSnackBar){
+    
+  }
 
 
 
@@ -84,7 +89,42 @@ export class HomeComponent implements OnInit {
     }
   );
 }
+addtofav(restaurant:Restaurant){
+  const newFavRestaurant: Favrestaurant = {
 
+
+    restId: restaurant.restId || '',  
+    name: restaurant.name || '', 
+    imageUrl:restaurant.imageUrl||'',     
+    location: restaurant.location || '',
+    favoriteDish: [] 
+
+
+
+  };
+  if (!this.ass.isUser) {
+    // User is not logged in, redirect to the login page
+    this.route.navigateByUrl("/Login");
+    return;
+  }
+  alert("Dish added to favorites");
+  this.us.addFavRestaurant(newFavRestaurant).subscribe(
+    (data) => {
+      console.log('Dish added to favorites:', data);
+      this.snackBar.open('Dish added to favorites successfully', 'Close', {
+        duration: 3000,
+      });
+      this.route.navigateByUrl("/")
+    },
+    (error) => {
+      console.error('Error adding dish to favorites:', error);
+      this.snackBar.open('Failed to add dish to favorites', 'Close', {
+        duration: 3000,
+      });
+      this.route.navigateByUrl("/")
+    }
+  );
+}
 
 
 }

@@ -1,0 +1,72 @@
+
+.footerDiv{
+  margin-top: 50px;
+  max-width: 100%;
+  padding-top: 3vh;
+ 
+  float: bottom;
+ /* padding-left: 30px; */
+ background-color: rgb(165, 163, 163);
+  }
+ 
+  .links-section {
+    padding-left: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .links-section > div {
+    width: calc(25% - 20px); /* Adjust width as needed */
+    margin-bottom: 20px;
+  }
+  
+.networks{
+  padding-left: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+}
+
+.social-network {
+  padding: 5px;
+  padding-right: 30px;
+  list-style: none;
+  display: flex;
+  gap: 10px; /* Adjust the spacing between icons */
+}
+.social-network a.icoRss:hover {
+  background-color: #F56505;
+  }
+  .social-network a.icoFacebook:hover {
+  background-color:#3B5998;
+  }
+  .social-network a.icoTwitter:hover {
+  background-color:#33ccff;
+  }
+  .social-network a.icoGoogle:hover {
+  background-color:#BD3518;
+  }
+  .social-network a.icoVimeo:hover {
+  background-color:#0590B8;
+  }
+  .social-network a.icoInstagram:hover {
+  background-color:#ac2bac;
+  }
+
+.social-network li {
+  display: inline-block;
+}
+
+.social-network a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Adjust the width of each icon container */
+  height: 40px; /* Adjust the height of each icon container */
+  border-radius: 50%; /* Make the icons circular */
+  background-color: rgb(165, 163, 163);
+  color: #170303; /* Icon color */
+ 
+}

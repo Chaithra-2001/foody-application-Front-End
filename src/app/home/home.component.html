@@ -1,49 +1,56 @@
-<!-- <img src="../../assets/showing-cakes-food52.gif" width="100%" height="400px" alt="" > -->
+
+
+
+
  <!-- <h2>{{userEmail.userName}}</h2> -->
-<img src="../../assets/2024-03-04 (10).png" alt="" width="100%" height="60%" >
-<div class="grid-container" >
-  <div class="imge">
-    <div style="display: flex; margin-left: 35%;">
-    <!-- <h1 style="color: rgb(237, 16, 215);"><b>Restaurants</b></h1> -->
-    </div>
-    <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
-      <mat-label>Search for Restaurants here</mat-label>
-      <input matInput placeholder="Search Here" [(ngModel)]="searchString" (mouseenter)="filter()" >
-      <mat-icon matSuffix (click)="filter()" >search</mat-icon>
+<img src="../../assets/Modern Indian Food Instagram Post.gif" alt="" width="100%" height="80%" >
+
+<!-- <video width="640" height="360" controls>
+  <source src="../../assets/Modern Indian Food Instagram Post (2).mp4" type="video/mp4">
+ 
+</video> -->
+
+<div style=" background-color:rgb(249, 247, 242);">
+  <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 60px;">
+ 
+    <input matInput placeholder="Search for Restaurants here" [(ngModel)]="searchString" (mouseenter)="filter()" >
+    <mat-icon matSuffix (click)="filter()" >search</mat-icon>
   </mat-form-field>
+  <div class="topRestoutantsTitle"style="background-color:rgb(249, 247, 242);" >
+    <p style="  font-family: 'Belanosima', sans-serif;
+    font-family: 'Cinzel', serif;" >Top Restaurants For You</p >
+  </div>
 </div>
-  
-
-  <mat-grid-list cols="4" rowHeight="400px"  style="margin-bottom: 40px; margin-top: 20px;" >
-
-    <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list hover-effect">
-      <mat-card  style="margin-bottom: 40px; border-radius: 20px; width: 100%;" (click)="navigateToRestaurantDetails(restaurant.restId)" class="dashboard-card" >
-        <mat-card-header>
-          
-           <h1 style="font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif">{{restaurant.name|titlecase}}</h1> 
-
-        
-
-        </mat-card-header>
-        <img src="../../assets/{{restaurant.restId}}.jpeg" width="100%" height="85%">
-        
-        <mat-card-content class="dashboard-card-content">
-
-        </mat-card-content>
-       
 
 
 
-        <h3 style="text-align: start; margin-left: 30px; font-weight: 500;">
-          <i class="material-icons">location_on</i> {{restaurant.location |titlecase}}
-          
-        </h3>
+<div class="restaurantData" >
+  <tr  *ngFor="let restaurant of displayRestaurantss" >
+    <div style=" margin-bottom: 200px;" (click)="navigateToRestaurantDetails(restaurant.restId)">
 
-      
-      </mat-card>
-    </mat-grid-tile>
-    
-</mat-grid-list>
+      <a >
+          <div class="restaurantCard">
+           
+              <img  class="image" [src]="restaurant.imageUrl" alt="image not found">
+              <p class="restaurantName">{{restaurant.name}}</p>
+          </div>
+      </a>
+      <mat-icon class="favButton"  *ngIf="ass.isAdmin==false || ass.isUser==true"   (click)="addtofav(restaurant)">favorite</mat-icon>
+
+
+    </div>
+
+  </tr>
+
+
+</div>
+
+
+
+
+
+
+
 
 
 

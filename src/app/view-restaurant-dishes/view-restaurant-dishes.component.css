@@ -1,0 +1,261 @@
+
+.userimage{
+    width: 4vw;
+    height: 8vh;
+    margin-left: 2vw;
+    margin-top: 2vh;
+    border-radius: 50px 50px 50px 50px;
+  }
+  .button-container {
+    margin-left: 30px;
+    display: flex;
+   margin-bottom: 20px;
+  }
+  
+  .button-container button {
+  
+    background-color: rgb(194, 66, 24);
+    color: azure;
+    
+    margin: 20px 20px; 
+  }
+  .dashboard-card {
+    margin-left: 40px;
+    border-radius: 20px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+  
+  .dashboard-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+  }
+  
+.userimage{
+  width: 4vw;
+  height: 8vh;
+  margin-left: 2vw;
+  margin-top: 2vh;
+  border-radius: 50px 50px 50px 50px;
+}
+
+.userDetails{
+  position: fixed;
+  margin-left: 80vw;
+  display: flex;
+  z-index: 1;
+}
+
+
+.images{
+    margin-top: 1vh;
+    width: 25vw;
+    height: 25vh;
+    border-radius: 10px;
+}
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.dishcard{
+    text-align: center;
+    width: 26vw;
+    min-height: 46vh;
+    border-radius: 10px;
+    transition: all 0.3s;
+    box-shadow: 0 0 3em -1em black;
+    margin-top: 10vh;
+    margin-bottom: 200px;
+
+
+}
+.dishcard:hover{
+    box-shadow: 0 0 5em -1em black;
+    transform: scale(1.1);
+}
+.addToCartButton{
+    position:absolute;
+    margin-top: -6vh;
+    margin-left: 4.5vw;
+    width: 7vw;
+    height: 5vh;
+    border-radius: 1vh;
+    border: none;
+    transition: all 0.3s;
+
+    font-size:x-large;
+}
+.addToCartButton:hover{
+    transform: scale(1.1);
+    background-color:black
+}
+
+.favIcon{
+    position: absolute;
+    margin-left: 10vw;
+    margin-top: -6vh;
+    color: red;
+}
+.favIcon:hover{
+    transform: scale(1.1);
+}
+
+.searchBar{
+    position: fixed;
+    margin-top: 3vh;
+    margin-left: 35vw;
+    z-index: 1;
+
+}
+.searchBar input{
+    width: 30vw;
+    height: 7vh;
+    border-radius: 1vw;
+    box-shadow: 1px 1px 2px 2px rgb(179, 177, 177);
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+
+
+}
+.searchIcon{
+    position: absolute;
+    margin-left: -3vw;
+    margin-top: 2vh;
+    color: black;
+}
+.restaurantImage{
+    margin-top: 22vh;
+    margin-left: 5vw;
+    width: 90vw;
+    height: 60vh;
+}
+.restaurantName{
+    font-size:4vw;
+    margin-left: 5vw;
+    margin-top: 4vh;
+    font-family: 'Belanosima', sans-serif;
+    font-family: 'Cinzel', serif;
+}
+
+.face{
+    color: red;
+}
+.bill{
+    border: 2px solid black;
+}
+.billBox{
+    position: fixed;
+    margin-left: 78vw;
+    margin-bottom: -5vh;
+}
+.sortButton{
+    width: 9vw;
+    background-color: rgb(130, 42, 42);
+    border-radius: 1vh;
+    margin-left: 5vw;
+    border: none;
+    height: 6vh;
+    box-shadow: 0 0 3em -1em black;
+    margin-top: 5vh;
+}
+
+.headerbody{
+    position: fixed;
+    background-image: linear-gradient(to bottom right,white,rgb(240, 159, 10));
+    width: 100vw;
+
+    height: 15vh;
+
+}
+.title{
+    position: absolute;
+    margin-left: 13vw;
+    font-size: xx-large;
+    margin-top: 5vh;
+}
+.jiffyLogo{
+    position: absolute;
+    width: 7vw;
+    margin-left: 5vw;
+    margin-top: 2vh;
+    border-radius: 50%;
+
+}
+.yourOrder{
+    margin-left: 70vw;
+    margin-top: 3vh;
+    position: fixed;
+    z-index: 1;
+    border: 2px solid rgb(130,42,42);
+    background-color: rgb(130,42,42);
+    color:white;
+    width: 10vw;
+    height: 6vh;
+    border-radius: 1vh;
+
+}
+p{
+    color: black;
+}
+
+.menuCard{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  color: black;
+  background-color:rgba(55, 54, 54,.8);
+  z-index: 1;
+}
+.smallcard{
+  margin-top: 5vh;
+  margin-left: 30vw;
+  background-color: white;
+  width: 40vw;
+  height: auto;
+}
+td{
+  font-size:x-large;
+}
+tr{
+  height: 8vh;
+  width: 20vw;
+}
+.menuButton{
+  position: absolute;
+  background-color: rgb(130, 42, 42);
+  border-radius: 1vh;
+  margin-left: 5vw;
+  border: none;
+  height: 6vh;
+  width: 9vw;
+  box-shadow: 0 0 3em -1em black;
+  margin-top: 5vh;
+}
+input{
+    color: black;
+}
+.btns{
+  width: 120px;
+  margin-bottom: 20px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(130,42,42);
+} 
+.btns:hover {
+  color: white;
+
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgb(159, 63, 63);
+}
+.favButton{
+  position: absolute;
+  margin-left: 23vw;
+  margin-top: -7vh;
+}
+.favButton:hover{
+color: red;
+
+}

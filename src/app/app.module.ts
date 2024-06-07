@@ -34,6 +34,8 @@ import { ViewMyRestaurantsComponent } from './view-my-restaurants/view-my-restau
 import { AddToFavRestaurantComponent } from './add-to-fav-restaurant/add-to-fav-restaurant.component';
 import { AddToFavDishComponent } from './add-to-fav-dish/add-to-fav-dish.component';
 import { MatSelectModule } from '@angular/material/select';
+import { FooterComponent } from './footer/footer.component';
+import { BillAmountComponent } from './bill-amount/bill-amount.component';
 
 
 
@@ -55,7 +57,9 @@ import { MatSelectModule } from '@angular/material/select';
     ViewOneDishComponent,
     ViewMyRestaurantsComponent,
     AddToFavRestaurantComponent,
-    AddToFavDishComponent
+    AddToFavDishComponent,
+    FooterComponent,
+    BillAmountComponent
   ],
   imports: [
     BrowserModule,

@@ -1,78 +1,38 @@
-<!-- <img src="../../assets/showing-cakes-food52.gif" width="100%" height="400px" alt="" > -->
-<!-- 
-<img src="../../assets/2024-03-04 (10).png" alt="" width="100%" height="80%" > -->
-<div class="grid-container" >
-  <div class="imge">
-    <div style="display: flex; margin-left: 35%;">
-    <!-- <h1 style="color: rgb(237, 16, 215);"><b>Restaurants</b></h1> -->
-    </div>
-    <!-- <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
-      <mat-label>Search Here</mat-label>
-      <input matInput placeholder="Search Here" [(ngModel)]="searchString" (mouseenter)="filter()" >
-      <mat-icon matSuffix (click)="filter()" >search</mat-icon>
-  </mat-form-field> -->
-
-    <!-- <div class="imggg">
-      <mat-form-field appearance="outline" class="searchh">
-        <input matInput placeholder="Search Here" [(ngModel)]="searchString" (mouseenter)="filter()">
-       <mat-icon matSuffix (click)="filter()" >search</mat-icon>
-      </mat-form-field>
-    </div> -->
-  </div>
-
-
-  <mat-grid-list cols="4" rowHeight="350px"  style="margin-bottom: 40px; margin-top: 30px; margin-left: 40px;" >
-
-    <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list hover-effect">
-      <mat-card (click)="navigateToRestaurantDetails(restaurant.restId)" style="margin-bottom: 40px; margin-top: 30px; margin-left: 40px;"  class="dashboard-card" >
-        <mat-card-header>
-          
-           <h1 style="font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif">{{restaurant.name|titlecase}}</h1> 
-<!--           
-           <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu"
-              aria-label="Toggle menu"><mat-icon>more_vert</mat-icon></button> 
-           <mat-menu #menu="matMenu" xPosition="before"> -->
-
-<!-- <a [routerLink]="['/ViewOneRestaurant', restaurant.restId]">View Restaurant Details</a> -->
-
-<!-- 
-            </mat-menu>  -->
-        
-
-        </mat-card-header>
-        <img src="../../assets/{{restaurant.restId}}.jpeg" width="100%" height="85%">
-        <mat-card-content class="dashboard-card-content">
-
-        </mat-card-content>
-        <!-- <img src="../../assets/{{cake.id}}.jpg" alt="" class="img">
-
-        <img [src]="cake.imageurl" alt=""  class="img"> -->
 
 
 
-        <h3 style="text-align: start; margin-left: 30px;">
-          <i class="material-icons">location_on</i>{{restaurant.location | titlecase}}
-          
-        </h3>
-      
-   
-<!--    
-          <button (click)="deleteRestaurant(restaurant.restId)">
-              <mat-icon style="color: blue; font-size: xx-large;" class="search-icon" aria-hidden="false"
-                  aria-label="Example home icon" fontIcon="delete">
-              </mat-icon>
-          </button> -->
-   
-    <div style="display: flex;justify-content: space-between;">    <a routerLink=""    *ngIf="ass.isAdmin && !ass.isUser"     (click)="deleteRestaurant(restaurant.restId)"><mat-icon>delete</mat-icon></a> 
-     
-      
-      <a [routerLink]="['/EditRestaurants', restaurant.restId]"   *ngIf="ass.isAdmin && !ass.isUser"   ><mat-icon>edit</mat-icon></a></div>
 
-        
-      </mat-card>
-    </mat-grid-tile>
+<mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 20px; width: 100%; ">
+  <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list" >
+    <mat-card   (click)="navigateToRestaurantDetails(restaurant.restId)"  class="dashboard-card"    >
+            
+      <img  [src]="restaurant.imageUrl" alt="image not found" >
+      <mat-card-content class="dashboard-card-content">
+        <h1 >{{restaurant.name|titlecase}}</h1> 
+       
+        <h3 ><mat-icon>location</mat-icon>{{restaurant.location}}   </h3> 
+      </mat-card-content>
+
     
+      
+        <div style="display: flex;justify-content: space-between;">    
+        <a routerLink=""    *ngIf="ass.isAdmin && !ass.isUser"     (click)="deleteRestaurant(restaurant.restId)"><mat-icon >delete</mat-icon></a> 
+        <a [routerLink]="['/EditRestaurants', restaurant.restId]"   *ngIf="ass.isAdmin && !ass.isUser"   ><mat-icon  >edit</mat-icon></a>
+      </div>
+  </mat-card>
+  </mat-grid-tile>
 </mat-grid-list>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

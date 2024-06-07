@@ -23,6 +23,7 @@ import { ViewMyRestaurantsComponent } from './view-my-restaurants/view-my-restau
 import { AddToFavRestaurantComponent } from './add-to-fav-restaurant/add-to-fav-restaurant.component';
 import { AddToFavDishComponent } from './add-to-fav-dish/add-to-fav-dish.component';
 import { UserComponentGuard } from './guards/user.guard';
+import { BillAmountComponent } from './bill-amount/bill-amount.component';
 
 const routes: Routes = [
 //   {
@@ -87,6 +88,7 @@ canActivate:[MerchantComponentGuard],
  
 
 },
+{path:'bill-Amount',component:BillAmountComponent},
 {
   path:"ViewRestaurant",
   redirectTo:""

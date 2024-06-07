@@ -146,13 +146,17 @@ import { Component } from '@angular/core';
 export class AddRestaurantComponent {
   userForm!: FormGroup;
   merchantEmail:string | undefined|null;
+
   constructor(private fb: FormBuilder, private ms:MerchantService,private snackBar: MatSnackBar,public router:Router) {}
 
   ngOnInit() {
     this.userForm = this.fb.group({
       restId: ['', Validators.required],
       name: ['', Validators.required],
+          imageUrl:['',],
       location: ['', Validators.required],
+
+
     });
 
    
@@ -167,39 +171,27 @@ export class AddRestaurantComponent {
     return this.userForm.get("location");
   }
 
+  //const filedata=file.target.files[0];
 
 
-   
-  // addRestaurant() {
-  //   this.ms.addRestaurant(this.userForm.value).subscribe(
-  //     () => {
-  //       this.openSnackBar("Restaurant added successfully");
-  //       this.router.navigateByUrl('/ViewMyRestaurants');
-  //     },
-  //     (error) => {
-  //       console.error("Error adding restaurant:", error);
-  //          }
-  //   );
-  // }
+  url:string= "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
+
+  selectedFile:any=File
+  converter(file: any){
+    if(file.target.files){
+      const reader=new FileReader();
+      reader.readAsDataURL(file.target.files[0]);
+      reader.onload=(event:any)=>{
+        this.url=event.target.result;
+      }
+    }}
 
 
-  // addRestaurant() {
-  //   this.ms.addRestaurant(this.userForm.value).subscribe(
-  //     () => {
-  //       this.openSnackBar("Restaurant added successfully");
-  //       this.router.navigateByUrl('/ViewMyRestaurants');
-  //     },
-  //     (error) => {
-  //       if (error && error.error && error.error.error === "Restaurant ID already exists") {
-  //         this.openSnackBar("A restaurant with the same ID already exists. Please use a different ID.");
-  //       } else {
-  //         console.error("Error adding restaurant:", error);
-  //         this.openSnackBar("A restaurant with the same ID already exists. Please use a different ID.");
-  //       }
-  //     }
-  //   );
-  // }
+
+  
+
   addRestaurant() {
+    this.userForm.value.imageUrl=this.url
     this.ms.addRestaurant(this.userForm.value).subscribe(
       () => {
         this.openSnackBar("Restaurant added successfully");
@@ -227,6 +219,7 @@ export class AddRestaurantComponent {
     }
 
   }
+
 
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {

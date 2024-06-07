@@ -1,9 +1,10 @@
 
 
+<body class="full-page-background">
 <form class="example-form" (ngSubmit)="login()" #loginpage="ngForm">
     <mat-card class="example-card">
     
-        <h1    style="color: rgb(216, 157, 85); font-weight: bolder;">Sign In</h1>
+        <h1    style="color: rgb(114, 25, 5); font-weight: bolder;text-align: center;  font-family: 'Cinzel', serif;">SIGN IN</h1>
 
 
         <mat-form-field >
@@ -28,15 +29,12 @@
       
    <div>
     <button mat-raised-button   color="primary" type="submit" [disabled]="loginpage.invalid"
-      style=" height: 50px; border-radius: 10px; width: 200px;    background-color: rgb(216, 157, 85);"    >SIGN IN</button>
-    <button mat-raised-button  type="reset"
-      style=" height: 50px; border-radius: 10px; margin-left: 100px; width: 200px;background-color: rgb(185, 181, 176); " >RESET</button>
+      style=" height: 50px; border-radius: 10px; width: 340px;    background-color: rgb(148, 127, 124);"    >SIGN IN</button>
+   
   </div>
 
-  <b style="margin-top: 30px;color: black;">Not a member?<a routerLink="/UserRegister" style="margin-left: 10px;">Sing up now</a></b>
+  <b style="margin-top: 15px;color: black;text-align: center;">Not a member ?<a routerLink="/UserRegister" style="margin-left: 10px;">Sing up now</a></b>
     </mat-card>
   </form>
 
-
-
-
+</body>

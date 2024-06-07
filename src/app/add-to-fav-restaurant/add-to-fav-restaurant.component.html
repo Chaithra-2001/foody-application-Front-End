@@ -1,67 +1,28 @@
-<!-- <img src="../../assets/showing-cakes-food52.gif" width="100%" height="400px" alt="" > -->
 
-<!-- <img src="../../assets/2024-03-04 (10).png" alt="" width="100%" height="80%" > -->
-<div class="grid-container" >
-    <div class="imge">
-      <div style="display: flex; margin-left: 35%;">
-      <!-- <h1 style="color: rgb(237, 16, 215);"><b>Restaurants</b></h1> -->
-      </div>
-      <!-- <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
-        <mat-label>Search for Restaurants here</mat-label>
-        <input matInput placeholder="Search Here" [(ngModel)]="searchString" (mouseenter)="filter()" >
-        <mat-icon matSuffix (click)="filter()" >search</mat-icon>
-    </mat-form-field> -->
-  
-    </div>
-  
-  
-    <mat-grid-list cols="4" rowHeight="450px"  style="margin-bottom: 40px; margin-top: 50px;" >
-  
-      <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list hover-effect">
-        <mat-card  style="margin-bottom: 40px; border-radius: 20px; margin-left: 40px ;margin-right: 40px; width: 100%;"  class="dashboard-card" >
-          <mat-card-header>
-            
-             <h1>{{restaurant.name|titlecase}}</h1> 
-  
-          
-  
-          </mat-card-header>
-          <img src="../../assets/{{restaurant.restId}}.jpeg" width="100%" height="85%">
-          <mat-card-content class="dashboard-card-content">
-  
-          </mat-card-content>
-          <!-- <img src="../../assets/{{cake.id}}.jpg" alt="" class="img">
-  
-          <img [src]="cake.imageurl" alt=""  class="img"> -->
-  
-  
-  
+
+
+
+  <mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 20px; width: 100%; " *ngIf="displayMessage(); else emptyBlock">
+    <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list">
+      <mat-card class="dashboard-card"  style="margin-left: 40px; border-radius: 20px;width: 300%;"  >
+              
+        <img  style="padding: 15px;border-radius: 20px;height: 200px;padding-top: 20px;" [src]="restaurant.imageUrl" alt="image not found" width="100%" height="100%">
+        <mat-card-content class="dashboard-card-content">
+          <h1 style="font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif;text-align: center;">{{restaurant.name|titlecase}}</h1> 
           <h3 style="text-align: start; margin-left: 30px;">
             <i class="material-icons">location_on</i> {{restaurant.location |titlecase}}
             
           </h3>
-        
-            <!-- <button (click)="deleteRestaurant(restaurant.restId)">
-                <mat-icon style="color: blue; font-size: xx-large;" class="search-icon" aria-hidden="false"
-                    aria-label="Example home icon" fontIcon="delete">
-                </mat-icon>
-            </button> -->
-        <!-- <
-          <a routerLink="" (click)="deleteRestaurant(restaurant.restId)"><mat-icon>delete</mat-icon></a> -->
-       
-          <!-- <a   routerLink="EditRestaurants/{{restaurant.restId}}"><mat-icon>edit</mat-icon></a> -->
-          <!-- <a mat-list-item ><mat-icon class="icon-list">favorite</mat-icon></a> -->
-        
-            <!-- Rest of your card content -->
-            <!-- <a mat-list-item  (click)="addFavoriteRestaurant(restaurant)" ><mat-icon class="icon-list">favorite</mat-icon></a> -->
-          <div>
-            <button (click)="delete(restaurant.restId)">
-              <mat-icon style="color: blue; font-size: xx-large;" class="search-icon" aria-hidden="false"
-                  aria-label="Example home icon" fontIcon="delete">
-              </mat-icon>
-          </button>
-          </div>
-        </mat-card>
-      </mat-grid-tile>
-      
+          <button style="margin-left: 20px; border: 1px solid rgb(247, 246, 247);"   (click)="delete(restaurant.restId)">
+            <mat-icon style="color: rgb(96, 155, 244); font-size: xx-large; " class="search-icon" aria-hidden="false"
+                aria-label="Delete icon" fontIcon="delete">
+            </mat-icon>
+        </button>
+        </mat-card-content>
+  
+
+  
+    </mat-card>
+    </mat-grid-tile>
   </mat-grid-list>
+  <ng-template #emptyBlock><h1 class="message">Oops! You have no favourite Restaurant 😥</h1></ng-template> 

@@ -2,7 +2,7 @@
 
     <div style="display: flex; min-height: 100%;">
         <div >
-            <img src="../../assets/dishes/{{displayOneDish.dishID}}.jpg" alt="" >
+            <img  style="padding: 15px;border-radius: 20px;height: 200px;padding-top: 20px;" [src]="displayOneDish.imageUrl" alt="image not found" width="100%" height="100%">
         </div>
         <div class="contents">
             <h1 style='font-weight:bolder' class="cake-name">{{displayOneDish.dishname |titlecase}}</h1>

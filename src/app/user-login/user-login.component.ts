@@ -14,8 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class UserLoginComponent implements OnInit {
 
   userEmail:any;
-  alldetails:any;
-  tokenget:any
+  tokenn:any;
+  getemailid:any
   constructor(private as:AuthenticationService,private router:Router,private snackbar:MatSnackBar,
     ) {}
   ngOnInit(): void {}
@@ -26,7 +26,7 @@ export class UserLoginComponent implements OnInit {
     password:'',
     
   }
-
+username:any;
   login() {
   this.as.login(this.UserLoginData).subscribe(
     (response) => {
@@ -44,10 +44,11 @@ export class UserLoginComponent implements OnInit {
         sessionStorage.setItem('useremailId',this.UserLoginData.emailId);
         sessionStorage.setItem('role', role);
         
-      this.alldetails=sessionStorage.getItem('token')
-      this.tokenget=sessionStorage.getItem('useremailId')
-    console.log(this.alldetails)
-    console.log(this.tokenget)
+      this.tokenn=sessionStorage.getItem('token')
+      this.getemailid=sessionStorage.getItem('useremailId')
+    
+    console.log(this.tokenn)
+    console.log(this.getemailid)
        this.openSnackBar("Login Successful");
         this.router.navigateByUrl("/");
         
@@ -69,7 +70,7 @@ export class UserLoginComponent implements OnInit {
 }
 openSnackBar(message: string) {
   this.snackbar.open(message, 'Close', {
-    duration: 5000 // Duration for which the snackbar will be displayed (in milliseconds)
+    duration: 5000 
   });
 }
 

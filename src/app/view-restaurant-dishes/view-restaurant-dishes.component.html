@@ -1,15 +1,9 @@
-<img src="../../assets/{{displayRestaurant.restId}}.jpeg" width="100%" height="85%">
-<h1 style="font-size: 60px; margin-top: 20px; text-align: center; color: chocolate;font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif">{{displayRestaurant.name |titlecase}}</h1>
-<a mat-list-item   *ngIf="ass.isAdmin==false || ass.isUser==true"   (click)="addtofav()"><mat-icon class="icon-list">favorite</mat-icon></a>
+<img  style="padding:50px; border-radius: 50px;" [src]="displayRestaurant.imageUrl" alt="image not found" width="100%" height="90%">
 
-<!-- 
-<mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
-  <mat-label>Filter by Category</mat-label>
-  <mat-select [(value)]="selectedCategory" (change)="filterByCategory()">
-    <mat-option value="all">All Categories</mat-option>
-    <mat-option *ngFor="let category of categories" [value]="category">{{ category }}</mat-option>
-  </mat-select>
-</mat-form-field> -->
+<h1 style="font-size: 60px; margin-top: 20px; text-align: center; color: chocolate;font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif">{{displayRestaurant.name |titlecase}}</h1>
+
+
+
 
 
 <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
@@ -18,38 +12,63 @@
   <mat-icon matSuffix (click)="filter()" >search</mat-icon>
 </mat-form-field>
 
-<mat-grid-list cols="4" rowHeight="300px">
-    <mat-grid-tile *ngFor="let restaurant of displayRestaurant.dishList" class="list">
-      <mat-card class="dashboard-card"  style="margin-left: 40px; border-radius: 20px;"  (click)="navigateToDetails(displayRestaurant.restId, restaurant.dishID)">
-        <mat-card-header>
-          <mat-card-title style="margin-left: 70px;font-weight: bolder;font-family:Georgia, 'Times New Roman', Times, serif">
-            {{restaurant.dishname|titlecase}}
-         </mat-card-title>
-        </mat-card-header>
 
+
+
+<div class="button-container">
+  <button class="sortButton" mat-button [matMenuTriggerFor]="aboveMenu">
+    <mat-icon>filter_list</mat-icon>Filter By
+  </button>
+  <mat-menu #aboveMenu="matMenu" Position="above">
+    <button mat-menu-item (click)="sortType('Veg')">Veg</button>
+    <button mat-menu-item (click)="sortType('NonVeg')">NonVeg</button>
+    <button mat-menu-item (click)="sortType('allDishes')">All Dishes</button>
+  </mat-menu>
+
+ 
+
+  <button class="sortButton" mat-button [matMenuTriggerFor]="priceMenu">
+    <mat-icon>sort</mat-icon>Sort By Price
+  </button>
+  <mat-menu #priceMenu="matMenu" Position="above">
+    <button mat-menu-item (click)="sortPrice('Highest')">Highest to Lowest</button>
+   
+    <button mat-menu-item (click)="sortPrice('Lowest')">Lowest to Highest</button>
+  </mat-menu>
+
+
+
+
+  <button class="sortButton" mat-button (click)="toggleMenu()">Menu</button>
+<div style="border: 2px solid black; padding: 20px; font-size:x-large;"  *ngIf="menuVisible">
+  <h2 style="text-align: center;">Menu</h2>
+  <ol >
+    <li *ngFor="let dish of displayRestaurant.dishList" style="margin-top: 15px;">
+      {{ dish.dishname }} - {{ dish.price | currency }}
+    </li>
+  </ol>
+</div>
+</div>
+
+
+
+
+
+<div class="main" >
+  <div class="dishcard" *ngFor="let dish of displayRestaurant.dishList"  >
+      <img class="images" [src]="dish.imageUrl" alt={{dish.dishname}} >
+      <p style="font-size:x-large;margin-top: 1vh;">{{dish.dishname}}</p>
+      <p style="margin-left: 0vw; font-size:3.5vh;margin-top: 0vh;">{{dish.category}} | <mat-icon style="color: darkgoldenrod; margin-top: 2px; margin-right: 5px;">star</mat-icon>{{displayOneDish.rating}}/5</p>
+      <p style="margin-left: -18vw; font-size:3.5vh;margin-top: 4vh; ">&#8377; {{dish.price}}</p>
+      <mat-icon class="addToCartButton" (click)=" addToMethod(dish)" style="background-color: transparent; color: black;">shopping_cart</mat-icon>
       
-        
-        <mat-card-content class="dashboard-card-content">
-          <mat-card-content class="dashboard-card-content">
-            <img src="../../assets/dishes/{{restaurant.dishID}}.jpg" width="100%" height="100%">
-          </mat-card-content>
-          
-        </mat-card-content>
-  
+      <mat-icon class="favIcon" *ngIf="ass.isAdmin==false || ass.isUser==true" (click)="addDishtoFavv(dish)">favorite_border</mat-icon>
+      <div style="display: flex;justify-content: space-between;">
 
-
-  <div style="display: flex; align-items: center; margin-left: 30px ; margin-bottom: 10px;">
-        <button   *ngIf="ass.isAdmin && !ass.isUser"   (click)="delete(displayRestaurant.restId, restaurant.dishID)">
-            <mat-icon style="color: blue; font-size: xx-large; " class="search-icon" aria-hidden="false"
-                aria-label="Delete icon" fontIcon="delete">
-            </mat-icon>
-        </button>
-        <div style="padding-left: 180px;">
-            <a   *ngIf="ass.isAdmin && !ass.isUser"  [routerLink]="['/EditDish', displayRestaurant.restId, restaurant.dishID]">
-                <mat-icon>edit</mat-icon>
-            </a>
-        </div>
-    </div> 
+        <button  *ngIf="ass.isAdmin && !ass.isUser" (click)="delete(displayRestaurant.restId, dish.dishID)"  class="btns" style="margin-left: 10px;" >delete</button>
+        <button  *ngIf="ass.isAdmin && !ass.isUser"  [routerLink]="['/EditDish', displayRestaurant.restId, dish.dishID]"  class="btns"  style="margin-right: 10px;">Edit</button>
+  </div>
+</div>
 
 
 
@@ -63,10 +82,3 @@
 
 
 
-
-
-    
-    
-      </mat-card>
-    </mat-grid-tile>
-</mat-grid-list>

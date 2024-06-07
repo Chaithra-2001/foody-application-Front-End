@@ -1,23 +1,25 @@
+
+
 .example-card {
-    max-width: 600px;
-    min-height: 400px;
-    margin-left: 30%;
-    margin-top: 4%;
+    max-width: 500px;
+    min-height: 100px;
+    margin-left: 55%;
+
     border: 1px black;
-    padding: 30px;
-    box-shadow: 0 6px 8px rgb(216, 157, 85);
+    padding: 20px;
+    box-shadow: 0 6px 8px rgb(116, 115, 114);
 
 }
-
-button {
-   
-    color: azure;
-    height: 50px;
+mat-form-field {
+    min-height: 5px;
 }
-
-h1 {
-    color: rgb(165, 74, 250);
-    font-weight: bolder;
- 
-    
+.full-page-background {
+    /* Background image for the entire page */
+    background-image: url('../../assets/BackgroundImages/view-food-assortment-with-copy-space (1).jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+.example-form{
+    padding-top: 20px;
 }

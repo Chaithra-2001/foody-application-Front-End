@@ -23,24 +23,24 @@ getAllDishes() {
   this.us.getFavDishes().subscribe(
     (response) => {
       this.displayDishes = response; 
+    
     },
     (error) => {
       console.error('Error fetching favorite dishes:', error);
     }
   );
 }
-// delete(dishId: any) {
-//   this.us.deleteDishFromFavorites(dishId).subscribe(
-//     (data) => {
-//       console.log("Deleted");
-//       this.openSnackBar('Deleted successfully');
-//       this.route.navigateByUrl('/');
-//     },
-//     (error) => {
-//       console.error('Error deleting dish:', error);
-//     }
-//   );
-// }
+favDishh=true;
+displayMessage(){
+  if(this.displayDishes.length==0){
+    this.favDishh=false;
+    return false;
+    
+  }else
+  this.favDishh=true;
+
+  return true;
+  }
 deleteDish(dishId: any) {
   this.us.deleteDishFromFavorites(dishId).subscribe(
     () => {

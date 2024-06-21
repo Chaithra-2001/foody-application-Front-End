@@ -12,69 +12,68 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class EditRestaurantComponent {
   id?: number;
-  editform: FormGroup;  // Define the FormGroup here
+  editform: FormGroup;
 
   constructor(
     private ms: MerchantService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private formbuilder: FormBuilder,
-    private snackbar:MatSnackBar
+    private snackbar: MatSnackBar
   ) {
-    // Initialize the FormGroup in the constructor
+
     this.editform = this.formbuilder.group({
       restId: '',
-      name: '',imageUrl:' ',
+      name: '', imageUrl: ' ',
       location: '',
-
       dishList: []
     });
   }
 
 
 
-ngOnInit(): void {
-  this.activatedRoute.paramMap.subscribe(params => {
-    const idParam = params.get('id');
-    if (idParam !== null) {
-      const id = +idParam; 
-      if (!isNaN(id)) {
-        this.id = id; // Assign the value to the class property
-        this.getRestaurantDetails(id);
+  ngOnInit(): void {
+    this.activatedRoute.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam !== null) {
+        const id = +idParam;
+        if (!isNaN(id)) {
+          this.id = id;
+          this.getRestaurantDetails(id);
+        } else {
+          console.error('Invalid id parameter:', idParam);
+        }
       } else {
-        console.error('Invalid id parameter:', idParam);
+        console.error('No id parameter provided.');
       }
-    } else {
-      console.error('No id parameter provided.');
-    }
-  });
-}
+    });
+  }
 
-getRestaurantDetails(id: number): void {
-  this.ms.merchantRestaurant().subscribe(
-    (data: Restaurant[]) => {
-      const restaurant = data.find((r: Restaurant) => r.restId === id.toString());
-      if (restaurant) {
-        this.editform.patchValue(restaurant); 
-      } else {
-        console.error('Restaurant not found with id:', id);
+  getRestaurantDetails(id: number): void {
+    this.ms.merchantRestaurant().subscribe(
+      (data: Restaurant[]) => {
+        const restaurant = data.find((r: Restaurant) => r.restId === id.toString());
+        if (restaurant) {
+          this.editform.patchValue(restaurant);
+        } else {
+          console.error('Restaurant not found with id:', id);
+        }
+      },
+      (error) => {
+        console.error('Error fetching restaurant details:', error);
       }
-    },
-    (error) => {
-      console.error('Error fetching restaurant details:', error);
-    }
-  );
-}
+    );
+  }
 
   editRestaurant() {
     if (this.id) {
-      this.ms.editRestaurant( this.editform.value).subscribe(data => {
-   
+      this.ms.editRestaurant(this.editform.value).subscribe(data => {
+
         console.log('Restaurant edited successfully:', data);
         this.openSnackBar("Restaurant edited successfully:");
         this.router.navigateByUrl('/ViewMyRestaurants');
       }, error => {
-       
+
         console.error('Error editing restaurant:', error);
         this.openSnackBar("Error editing restaurant");
       });
@@ -82,15 +81,9 @@ getRestaurantDetails(id: number): void {
       console.error('ID is undefined. Cannot edit restaurant.');
       this.openSnackBar("ID is undefined. Cannot edit restaurant");
     }
-   }
+  }
 
-  editRestaurants: Restaurant = {
-    restId: '',
-    name: '',
-    imageUrl:'',
-    location: '',
-    dishList: []
-  };
+
 
   canClose() {
     if (this.editform.dirty && this.editform.invalid) {
@@ -99,10 +92,10 @@ getRestaurantDetails(id: number): void {
     }
     else {
       return true;
-    
 
+
+    }
   }
-}
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
@@ -110,4 +103,4 @@ getRestaurantDetails(id: number): void {
     });
   }
 
-  }
+}

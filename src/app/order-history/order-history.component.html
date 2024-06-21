@@ -1,0 +1,37 @@
+<h1 class="h1tag">Past Orders</h1>
+
+<div class="container" *ngFor="let item of orderdata">
+  <div style="display: flex;justify-content: space-between;">
+    <div>
+      <h2>Order Id: {{item.orderId}}</h2>
+      <h4>Date: {{item.date}}</h4>
+    </div>
+    <div>
+      <h2>Delivery To: {{user.userName |titlecase}}</h2>
+      <h4>Address: {{user.location |titlecase}}</h4>
+
+    </div>
+  </div>
+  <hr>
+
+  <div class="dishes" *ngFor="let dish of item.dishes">
+
+    <img width="15%" [src]="dish.imageUrl" alt="">
+    <div style="margin-left: 100px;">
+
+      <h3>Name: {{dish.dishname|titlecase}}</h3>
+      <h3>Category: {{dish.category | titlecase}}</h3>
+
+      <h3>Price: &#8377;{{dish.price}}</h3>
+    </div>
+  </div>
+  <hr>
+  <div class="btn">
+
+    <h1>Total price: &#8377;{{item.totalPrice}}</h1>
+
+    <button class="deleteOrder" style="height: 50px; " (click)="deleteOrder(item.orderId)">Cancel Order</button>
+
+  </div>
+
+</div>

@@ -1,7 +1,7 @@
 
 
 .example-card {
-    max-width: 500px;
+    max-width: 520px;
     min-height: 100px;
     margin-left: 55%;
 
@@ -10,6 +10,12 @@
     box-shadow: 0 6px 8px rgb(116, 115, 114);
 
 }
+.errDiv {
+    margin: 0;
+    padding: 0;
+    color: red;
+    font-size: 12px;
+  }
 mat-form-field {
     min-height: 5px;
 }
@@ -23,3 +29,4 @@ mat-form-field {
 .example-form{
     padding-top: 20px;
 }
+

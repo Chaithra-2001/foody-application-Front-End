@@ -1,0 +1,47 @@
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    min-width: 15vw;
+    padding: 2vh;
+    text-align: center;
+
+
+  }
+  .td{
+    margin-bottom: -5vh;
+    color: white;
+    font-family: 'Belanosima', sans-serif;
+    font-family: 'Cinzel', serif;
+    font-size: 2vh;
+    letter-spacing: 2px;
+
+  }
+
+  .buttons{
+    margin-left: 85vw;
+    margin-top: -8vh;
+    background-color: rgb(167, 190, 244);
+  }
+
+  button:hover{
+    color: white;
+    background-color:rgb(130, 42, 42);
+  }
+
+  button{
+    width: 10vw;
+    background-color:white;
+    border-radius: 7px;
+  }
+
+  .mainTitles{
+    height: 10vh;
+    background-color: rgb(130, 42, 42);
+  }
+  .table{
+    margin-top: 5vh;
+    margin-left: 4vw;
+  }

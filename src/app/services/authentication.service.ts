@@ -80,8 +80,10 @@ export class AuthenticationService {
   private tokenKey = 'token';
   private emailKey="useremailId"
   private token: string | null = null;
-    isAdmin: boolean = false;
+  
+  isAdmin: boolean = false;
   isUser: boolean = false;
+  isOwner:boolean=false;
   useremailid:any
 
   constructor(private  httpClient: HttpClient,private router:Router,private snackBar:MatSnackBar) {
@@ -90,9 +92,7 @@ export class AuthenticationService {
 
    loadToken(): void {
     this.token = sessionStorage.getItem(this.tokenKey);
-    
-
-  }
+    }
 
   getToken(): string | null {
     return this.token;
@@ -100,10 +100,8 @@ export class AuthenticationService {
 
 
   login(credentials:any): Observable<any>{
+    return this.httpClient.post<any>("http://localhost:8088/api/v1/login", credentials)}
     
-        return this.httpClient.post<any>("http://localhost:8088/api/v1/login", credentials)
-        
-    }
     getUserEmail(): string | null {
       return sessionStorage.getItem(this.emailKey);
     }
@@ -114,16 +112,14 @@ export class AuthenticationService {
 
   }
 
-  usernamed:any;
-  logout(): void {
-    // this.removeToken(); // Remove token from session storage
-    this.isAdmin=false;
+    logout(): void {
+   this.isAdmin=false;
     this.isUser=false;
-  
-    sessionStorage.clear()
-    this.router.navigateByUrl('/'); // Navigate to login page after logout
+    this.isOwner=false;
+     sessionStorage.clear()
+    this.router.navigateByUrl('/'); 
     this.snackBar.open('You have been logged out.', 'Success', {
-      duration: 3000, // Duration in milliseconds
+      duration: 3000, 
     });
   }
 

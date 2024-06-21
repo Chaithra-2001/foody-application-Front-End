@@ -5,7 +5,7 @@
     margin-top: 4%;
     border: 1px black;
     padding: 30px;
-    box-shadow: 0 6px 8px rgb(216, 157, 85);
+    box-shadow: 0 6px 8px rgb(29, 29, 28);
 
 }
 
@@ -16,10 +16,13 @@ button {
 }
 
 h1 {
-    color: rgb(216, 157, 85);
+    color: rgb(115, 20, 5);
     font-weight: bolder;
  
 
+}
+mat-form-field {
+    min-height: 5px;
 }
 .shadow-form {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

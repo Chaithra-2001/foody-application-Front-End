@@ -63,7 +63,7 @@ export class EditDishComponent implements OnInit {
       this.ms.updateDish(this.restaurantId, this.dishId, this.editDishForm.value).subscribe(data => {
         console.log('Dish edited successfully:', data);
         this.openSnackBar('Dish edited successfully');
-        this.router.navigateByUrl('/ViewMyRestaurants'); 
+        this.router.navigate(['/ViewOneRestaurant', this.restaurantId]);
       }, error => {
         console.error('Error editing dish:', error);
       });
@@ -86,7 +86,7 @@ export class EditDishComponent implements OnInit {
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 3000 // Duration for which the snackbar will be displayed (in milliseconds)
+      duration: 3000 
     });
   }
 }

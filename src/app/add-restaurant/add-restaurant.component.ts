@@ -23,7 +23,7 @@
 //       location: ['', Validators.required],
 //     });
 
-   
+
 //   }
 //   get restId(){
 //     return this.userForm.get("restId");
@@ -37,7 +37,7 @@
 
 
 
-   
+
 //   // addRestaurant() {
 //   //   this.ms.addRestaurant(this.userForm.value).subscribe(
 //   //     () => {
@@ -69,14 +69,14 @@
 //   //   this.ms.addRestaurant(this.userForm.value).pipe(
 //   //     catchError((error) => {
 //   //       if (error.status === 409) { // Assuming 409 is the status code for RestaurantAlreadyExistException
-         
+
 //   //         this.snackBar.open('"A restaurant with the same name already exists. Please use a different name."', 'error', {
 //   //           duration: 5000,
 //   //           panelClass: ['mat-toolbar', 'mat-warn']
 //   //         });
 //   //       } else {
 //   //         console.error("Error adding restaurant:", error);
-         
+
 //   //         this.snackBar.open('An error occurred while adding the restaurant.', 'error', {
 //   //           duration: 5000,
 //   //           panelClass: ['mat-toolbar', 'mat-warn']
@@ -86,8 +86,8 @@
 //   //     })
 //   //   ).subscribe(
 //   //     () => {
-      
-          
+
+
 //   //       this.snackBar.open('Restaurant added successfully', 'succes', {
 //   //         duration: 5000,
 //   //         panelClass: ['mat-toolbar', 'mat-warn']
@@ -145,57 +145,55 @@ import { Component } from '@angular/core';
 })
 export class AddRestaurantComponent {
   userForm!: FormGroup;
-  merchantEmail:string | undefined|null;
+  merchantEmail: string | undefined | null;
 
-  constructor(private fb: FormBuilder, private ms:MerchantService,private snackBar: MatSnackBar,public router:Router) {}
+  constructor(private fb: FormBuilder, private ms: MerchantService, private snackBar: MatSnackBar, public router: Router) { }
 
   ngOnInit() {
     this.userForm = this.fb.group({
       restId: ['', Validators.required],
       name: ['', Validators.required],
-          imageUrl:['',],
+      imageUrl: ['',],
       location: ['', Validators.required],
+      status: ['false', []],
 
 
     });
-
-   
   }
-  get restId(){
+
+  get restId() {
     return this.userForm.get("restId");
   }
-  get name(){
+  get name() {
     return this.userForm.get("name");
   }
-  get location(){
+  get location() {
     return this.userForm.get("location");
   }
 
-  //const filedata=file.target.files[0];
 
 
-  url:string= "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
 
-  selectedFile:any=File
-  converter(file: any){
-    if(file.target.files){
-      const reader=new FileReader();
+  url: string = "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
+
+  selectedFile: any = File
+  converter(file: any) {
+    if (file.target.files) {
+      const reader = new FileReader();
       reader.readAsDataURL(file.target.files[0]);
-      reader.onload=(event:any)=>{
-        this.url=event.target.result;
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
       }
-    }}
+    }
+  }
 
-
-
-  
 
   addRestaurant() {
-    this.userForm.value.imageUrl=this.url
+    this.userForm.value.imageUrl = this.url
     this.ms.addRestaurant(this.userForm.value).subscribe(
       () => {
         this.openSnackBar("Restaurant added successfully");
-        this.router.navigateByUrl('/ViewMyRestaurants');
+        this.router.navigateByUrl('/addDishes');
       },
       (error) => {
         if (error && error.error && error.error.error === "Restaurant ID already exists") {
@@ -206,8 +204,8 @@ export class AddRestaurantComponent {
         }
       }
     );
-  } 
-  
+  }
+
 
   canClose() {
     if (this.userForm.dirty && this.userForm.invalid) {
@@ -223,7 +221,7 @@ export class AddRestaurantComponent {
 
   openSnackBar(message: string) {
     this.snackBar.open(message, 'Close', {
-      duration: 5000 
+      duration: 5000
     });
   }
 

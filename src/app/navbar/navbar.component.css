@@ -98,3 +98,13 @@ button:hover {
     border-radius: 1vh;
  
   }
+  .colorful-text {
+    font-size: 5vh;
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: 'Berkshire Swash', cursive; 
+      margin-left: 1vw;
+      margin-top: 1vh;
+   
+      color: rgb(130,42,42);
+}

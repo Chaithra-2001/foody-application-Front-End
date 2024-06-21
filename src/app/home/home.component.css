@@ -1,6 +1,4 @@
-*{
-  background-color:rgb(249, 247, 242);
-}
+
 
 
 mat-card {
@@ -24,9 +22,7 @@ a {
     text-decoration: none;
 }
 
-a :hover {
-    color: greenyellow;
-}
+
 
 /* Add this to your component's style or global styles */
 .list:hover .dashboard-card {
@@ -85,8 +81,8 @@ a :hover {
 .restaurantCard{
     text-align: center;
     margin-top: 10vh;
-    width: 26vw;
-    height: 40vh;
+   width: 26vw;
+    min-height: 50vh;
     box-shadow: 0 0 3em -1em black;
     border-radius: 20px;
     transition: all 0.3s;
@@ -184,24 +180,12 @@ a{
 
 }
 
-.imageSlider{
-    z-index:0;
-    margin-top: 20vh;
-    margin: 5vw;
 
-}
-
-.currentLocation{
-  position:absolute;
-  margin-top: 4vh;
-  margin-left: -28vw;
-
-}
 
 .topRestoutantsTitle{
     font-size:xx-large;
-    margin-top: 10vh;
-    margin-left: 2vw;
+    margin-top: 2vh;
+    margin-left: 4vw;
     color: black;
 }
 

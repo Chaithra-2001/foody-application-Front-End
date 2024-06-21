@@ -7,6 +7,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { UserService } from '../services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UserLoginComponent } from '../user-login/user-login.component';
+import { MerchantService } from '../services/merchant.service';
 
 @Component({
   selector: 'app-navbar',
@@ -21,42 +22,48 @@ export class NavbarComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
-  
-  
-   
+
+
+
 
   userEmail: string | null = '';
-    token: string | null = ''; 
-  
-    constructor(
-    
-      public ass: AuthenticationService,
-      private  userService:UserService
-    
-     
-      
-      ) {}
-    
-    
-  
-    ngOnInit() {
-   this.getUser()
-     }
-     userData:any;
-  getUser(){
-    this.userService.getUser().subscribe(data=>{
-      this.userData=data;
-      console.log("user data "+data);
-      
+  token: string | null = '';
+  getdaa: any;
+  user: any
+
+  constructor(
+
+    public ass: AuthenticationService,
+    private userService: UserService,
+    private ms: MerchantService
+) { }
+
+
+ 
+  ngOnInit() {
+    this.getdata()
+    this.userService.getUser().subscribe(
+      data => {
+        this.user = data;
+      }
+    )
+  }
+
+
+
+  getdata() {
+    this.ms.getUser().subscribe(data => {
+      this.getdaa = data
+      console.log(data);
     })
   }
-  
-  logout(){
-    this.ass.logout(); 
+
+  logout() {
+    this.ass.logout();
   }
 
 
 
-  
+
 
 } 

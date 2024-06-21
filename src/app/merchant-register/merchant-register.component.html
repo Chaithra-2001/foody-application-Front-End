@@ -1,65 +1,66 @@
+<body class="full-page-background">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card" style="margin-bottom: 50px; margin-top: 10px;">
+      <h1 style="color: rgba(84, 14, 9, 0.816);font-weight: 600;text-align: center;  font-family: 'Cinzel', serif;">CREATE AN ACCOUNT</h1>
 
 
-  <body class="full-page-background">
-      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-          <mat-card class="example-card" style="margin-bottom: 50px; margin-top: 10px;">
-            <h1    style="color: rgba(84, 14, 9, 0.816);font-weight: 600;text-align: center;  font-family: 'Cinzel', serif;"  >CREATE AN ACCOUNT</h1>
-  
-        
-            <mat-form-field>
-              <mat-label>Merchant Name</mat-label>
-              <input matInput type="text" formControlName="merchantName">
-              <div *ngIf="userForm.get('merchantName')?.invalid && userForm.get('merchantName')?.touched">
-                <mat-error *ngIf="userForm.get('merchantName')?.hasError('required')">Merchant Name is required</mat-error>
-                <mat-error *ngIf="userForm.get('merchantName')?.hasError('minlength')">Merchant Name should be more than 4 characters</mat-error>
-                <mat-error *ngIf="userForm.get('merchantName')?.hasError('pattern')">Merchant Name should contain only alphabets</mat-error>
-              </div>
-            </mat-form-field>
-        
-      
-            <mat-form-field>
-            <mat-label>Email Id </mat-label>
-            <input matInput formControlName="emailId">
-            <mat-error *ngIf="emailId?.errors?.['required']">Email id is required </mat-error>
-            <mat-error *ngIf="emailId?.errors?.['pattern']">Enter valid email address </mat-error>
-          </mat-form-field>
-      
-      
-          <mat-form-field appearance="fill">
-            <mat-label>Password</mat-label>
-            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
-            <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
-            <!-- <mat-error *ngIf="password?.errors?.['pattern']">Enter a strong password (at least 8 characters, including one uppercase letter, one lowercase letter, one digit, and one special character)</mat-error> -->
-          </mat-form-field>
-          
-      
-          
-        
-            <mat-form-field>
-              <mat-label>Location</mat-label>
-              <input matInput type="text" formControlName="location">
-              <div *ngIf="userForm.get('location')?.invalid && userForm.get('location')?.touched">
-                <mat-error *ngIf="userForm.get('location')?.hasError('required')">Location is required</mat-error>
-              </div>
-            </mat-form-field>
-        
-          
-      
-            <mat-form-field>
-              <mat-label>Phone Number</mat-label>
-              <input matInput type="text" formControlName="phoneNumber">
-              <div *ngIf="userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched">
-                <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
-                <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('pattern')">Phone number should be at least 10 digits</mat-error>
-              </div>
-            </mat-form-field>
-        
-            <button mat-raised-button [disabled]="userForm.invalid" color="primary" style="background-color: rgb(85, 83, 81);height: 50px;">Sign Up</button>
-            <b style="margin-top: 10px;color: rgb(0, 8, 93);text-align: center;">Already a member?<a routerLink="/Login" style="margin-left: 10px;color: rgb(33, 75, 226);">Login</a></b>
-          </mat-card>
-        </form>
+         <mat-form-field>
+        <mat-label>Merchant Name</mat-label>
+        <input matInput type="text" formControlName="merchantName">
+        <mat-error *ngIf="userForm.get('merchantName')?.hasError('required') ">Merchant Name is required</mat-error>
+        <mat-error *ngIf="userForm.get('merchantName')?.hasError('minlength')">Merchant Name should be starts with
+          capital letter & more than 4 characters</mat-error>
+        <mat-error *ngIf="userForm.get('merchantName')?.hasError('pattern')">Merchant Name should contain only
+          alphabets</mat-error>
+        </mat-form-field>
 
-  </body>
+
+
+      <mat-form-field>
+        <mat-label>Email Id </mat-label>
+        <input matInput formControlName="emailId">
+        <mat-error *ngIf="emailId?.errors?.['required']">Email id is required </mat-error>
+        <mat-error *ngIf="emailId?.errors?.['pattern']">Enter valid email address {{sampleemail}}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.errors?.['required']">Password is required</mat-error>
+        <mat-error *ngIf="password?.errors?.['minlength']">Password should have min 8 character</mat-error>
+        <mat-error *ngIf="password?.errors?.['pattern']"> password have 1 upper case letter, and 1 special
+          character</mat-error>
+        </mat-form-field>
+
+
+
+
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" formControlName="location">
+       <mat-error *ngIf="userForm.get('location')?.hasError('required')">Location is required</mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+        <mat-error *ngIf="userForm.get('phoneNumber')?.hasError('pattern')">Phone number should be at least 10
+          digits</mat-error>
+        </mat-form-field>
+
+      <button mat-raised-button [disabled]="userForm.invalid" color="primary"
+        style="background-color: rgb(85, 83, 81);height: 50px;">Sign Up</button>
+      <b style="margin-top: 10px;color: rgb(0, 8, 93);text-align: center;">Already a member?<a routerLink="/Login"
+          style="margin-left: 10px;color: rgb(33, 75, 226);">Login</a></b>
+    </mat-card>
+  </form>
+
+</body>

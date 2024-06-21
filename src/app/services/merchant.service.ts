@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
@@ -10,83 +10,81 @@ import { Dish } from '../models/dishes';
 })
 export class MerchantService {
 
-  private token: string | null = null;
+
   isRestIdExists: any;
- 
-  constructor(private httpclient: HttpClient, private snackBar: MatSnackBar) {
-    // this.token = sessionStorage.getItem('token');
+
+  constructor(private httpclient: HttpClient, private snackBar: MatSnackBar) { }
+
+
+
+  register(merchantData: any): Observable<any> {
+    return this.httpclient.post(`http://localhost:8088/api/v2/register`, merchantData)
   }
 
-  // setToken(token: string): void {
-  //   this.token = token;
-  //   sessionStorage.setItem('token', token);
-  // }
+  addRestaurant(restaurant: Restaurant) {
+    return this.httpclient.post<any>("http://localhost:8088/api/v2/restaurant/add", restaurant);
+  }
 
-  // getToken(): string | null {
-  //   return this.token;
-  // }
+  displayRestaurant(): Observable<Restaurant[]> {
+    return this.httpclient.get<Restaurant[]>("http://localhost:8088/api/v2/all");
+  }
 
-  // login(credentials: any): Observable<HttpResponse<any>> {
-  //   return this.httpclient.post<any>("http://localhost:8088/api/v1/login", credentials)
-  //   }
+  merchantRestaurant(): Observable<Restaurant[]> {
+    return this.httpclient.get<Restaurant[]>("http://localhost:8088/api/v2/restaurant/restaurants");
+  }
 
-    register(merchantData: any): Observable<any> {
-      return this.httpclient.post(`http://localhost:8088/api/v2/register`, merchantData)
-        
-    }
-   addRestaurant( restaurant: Restaurant) {
-     return this.httpclient.post<any>("http://localhost:8088/api/v2/restaurant/add", restaurant);
-     }
-
-     displayRestaurant(): Observable<Restaurant[]> {
-      return this.httpclient.get<Restaurant[]>("http://localhost:8088/api/v2/all");
-    }
-
-    merchantRestaurant():Observable<Restaurant[]>{
-      return this.httpclient.get<Restaurant[]>("http://localhost:8088/api/v2/restaurant/restaurants");
-    }
-
-    editRestaurant( updatedRestaurant: Restaurant){
+  editRestaurant(updatedRestaurant: Restaurant) {
     return this.httpclient.put<Restaurant>(`http://localhost:8088/api/v2/restaurant`, updatedRestaurant);
-    }
+  }
 
-    deleteRestaurantById(restaurantId:Restaurant){
-      // const headers = { 'Authorization': `Bearer ${this.getToken()}` };
+  deleteRestaurantById(restaurantId: Restaurant) {
     return this.httpclient.delete<Restaurant>(`http://localhost:8088/api/v2/restaurant/${restaurantId}`);
-    }
-    addDish(restaurantId: string,  dishes: Dish[]) {
-      return this.httpclient.post<Dish[]>(`http://localhost:8088/api/v2/restaurant/${restaurantId}`,dishes);
-    }
+  }
 
-    getRestaurantById(restaurantId: string): Observable<Restaurant> {
-      return this.httpclient.get<Restaurant>(`http://localhost:8088/api/v2/restaurants/${restaurantId}`);
-    }
+  addDish(restaurantId: string, dishes: Dish[]) {
+    return this.httpclient.post<Dish[]>(`http://localhost:8088/api/v2/restaurant/${restaurantId}`, dishes);
+  }
 
-    getDishByDishId(restaurantId: string, dishId: string) {
-      const url = `http://localhost:8088/api/v2/restaurant/${restaurantId}/${dishId}`;
-      return this.httpclient.get<Dish>(url);
-    }
-   
-    
-    deleteDishByDishId(restaurantId: string, dishId: string){
+  getRestaurantById(restaurantId: string): Observable<Restaurant> {
+    return this.httpclient.get<Restaurant>(`http://localhost:8088/api/v2/restaurants/${restaurantId}`);
+  }
 
+  getDishByDishId(restaurantId: string, dishId: string) {
+    const url = `http://localhost:8088/api/v2/restaurant/${restaurantId}/${dishId}`;
+    return this.httpclient.get<Dish>(url);
+  }
+
+
+  deleteDishByDishId(restaurantId: string, dishId: string) {
     return this.httpclient.delete<Dish>(`http://localhost:8088/api/v2/restaurant/delete/${restaurantId}/${dishId}`);
-    }
+  }
 
 
-    updateDish(restaurantId: string, dishId: string, updatedDish: Dish): Observable<Dish> {
-      // const headers = { 'Authorization': `Bearer ${this.getToken()}` };
-      const url = `http://localhost:8088/api/v2/restaurant/${restaurantId}/dish/${dishId}`;
-      return this.httpclient.put<Dish>(url, updatedDish);//@PutMapping("/restaurant/{restId}/dishes/update/{dishId}")
-    }
+  updateDish(restaurantId: string, dishId: string, updatedDish: Dish): Observable<Dish> {
+    const url = `http://localhost:8088/api/v2/restaurant/${restaurantId}/dish/${dishId}`;
+    return this.httpclient.put<Dish>(url, updatedDish);
+  }
 
-    getonedish(restaurantId: string, dishId: string) {
-      const url = `http://localhost:8088/api/v2/${restaurantId}/${dishId}`;
-      return this.httpclient.get<Dish>(url);
-    }
+  getonedish(restaurantId: string, dishId: string) {
+    const url = `http://localhost:8088/api/v2/${restaurantId}/${dishId}`;
+    return this.httpclient.get<Dish>(url);
+  }
+
+  checkRestaurantExists(restId: string): Observable<boolean> {
+    return this.httpclient.get<boolean>(`http://localhost:8088/api/v2/checkRestaurantExists/${restId}`);
+  }
 
 
-    checkRestaurantExists(restId: string): Observable<boolean> {
-      return this.httpclient.get<boolean>(`http://localhost:8088/api/v2/checkRestaurantExists/${restId}`);
-    }
+  getAllMerchants() {
+    return this.httpclient.get("http://localhost:8088/api/v2/allMerchants");
+  }
+
+  setStatus(merchantId: any, restaurant: any) {
+    return this.httpclient.put("http://localhost:8088/api/v2/setStatus/" + merchantId, restaurant);
+  }
+
+  getUser() {
+    return this.httpclient.get("http://localhost:8088/api/v2/restaurant/getuserdetails")
+  }
+
 }

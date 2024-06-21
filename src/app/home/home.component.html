@@ -1,57 +1,54 @@
+<img src="../../assets/Modern Indian Food Instagram Post.gif" alt="" width="100%" height="80%">
 
 
+<div style="display: flex; margin-top: 100px;margin-left: 40px;">
+  <div>
+    <h1 style="  font-family: 'Belanosima', sans-serif;
+  font-family: 'Cinzel', serif;"><mat-icon style="color: black;">location_on</mat-icon>Bangalore</h1>
+  </div>
+  <div style="margin-left: 100px;">
+    <mat-form-field style="margin-bottom: 50px;width: 200%;">
 
 
- <!-- <h2>{{userEmail.userName}}</h2> -->
-<img src="../../assets/Modern Indian Food Instagram Post.gif" alt="" width="100%" height="80%" >
+      <input matInput placeholder="Search for Restaurants here" [(ngModel)]="searchString" (mouseenter)="filter()">
+      <mat-icon matSuffix (click)="filter()">search</mat-icon>
+    </mat-form-field>
+  </div>
 
-<!-- <video width="640" height="360" controls>
-  <source src="../../assets/Modern Indian Food Instagram Post (2).mp4" type="video/mp4">
- 
-</video> -->
+</div>
 
-<div style=" background-color:rgb(249, 247, 242);">
-  <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 60px;">
- 
-    <input matInput placeholder="Search for Restaurants here" [(ngModel)]="searchString" (mouseenter)="filter()" >
-    <mat-icon matSuffix (click)="filter()" >search</mat-icon>
-  </mat-form-field>
-  <div class="topRestoutantsTitle"style="background-color:rgb(249, 247, 242);" >
+<div>
+
+  <div class="topRestoutantsTitle">
     <p style="  font-family: 'Belanosima', sans-serif;
-    font-family: 'Cinzel', serif;" >Top Restaurants For You</p >
+    font-family: 'Cinzel', serif;">Top Restaurants For You</p>
   </div>
 </div>
 
 
 
-<div class="restaurantData" >
-  <tr  *ngFor="let restaurant of displayRestaurantss" >
-    <div style=" margin-bottom: 200px;" (click)="navigateToRestaurantDetails(restaurant.restId)">
+<div class="restaurantData">
+  <tr *ngFor="let restaurant of displayRestaurantss">
+    <div *ngIf="restaurant.status==true">
+      <div style=" margin-bottom: 80px;" (click)="navigateToRestaurantDetails(restaurant.restId)">
 
-      <a >
+        
           <div class="restaurantCard">
-           
-              <img  class="image" [src]="restaurant.imageUrl" alt="image not found">
-              <p class="restaurantName">{{restaurant.name}}</p>
+
+            <img class="image" [src]="restaurant.imageUrl" alt="image not found">
+            <p class="restaurantName">{{restaurant.name}}</p>
+            <h4 style="color: black;margin-bottom: 10px;"><mat-icon
+                style="color: black;">location_on</mat-icon>{{restaurant.location |titlecase}}</h4>
           </div>
-      </a>
-      <mat-icon class="favButton"  *ngIf="ass.isAdmin==false || ass.isUser==true"   (click)="addtofav(restaurant)">favorite</mat-icon>
+      
+        <mat-icon class="favButton" *ngIf="ass.isAdmin==false || ass.isUser==true"
+          (click)="addtofav(restaurant, $event)">favorite</mat-icon>
 
 
+      </div>
+      
     </div>
-
   </tr>
 
 
 </div>
-
-
-
-
-
-
-
-
-
-
-

@@ -27,7 +27,7 @@ import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.compo
 import { EditDishComponent } from './edit-dish/edit-dish.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ViewRestaurantDishesComponent } from './view-restaurant-dishes/view-restaurant-dishes.component';
-import { ViewOneDishComponent } from './view-one-dish/view-one-dish.component';
+
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ViewMyRestaurantsComponent } from './view-my-restaurants/view-my-restaurants.component';
@@ -36,6 +36,8 @@ import { AddToFavDishComponent } from './add-to-fav-dish/add-to-fav-dish.compone
 import { MatSelectModule } from '@angular/material/select';
 import { FooterComponent } from './footer/footer.component';
 import { BillAmountComponent } from './bill-amount/bill-amount.component';
+import { ApplicationAdminComponent } from './application-admin/application-admin.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 
 
@@ -54,12 +56,14 @@ import { BillAmountComponent } from './bill-amount/bill-amount.component';
     EditDishComponent,
     PageNotFoundComponent,
     ViewRestaurantDishesComponent,
-    ViewOneDishComponent,
+  
     ViewMyRestaurantsComponent,
     AddToFavRestaurantComponent,
     AddToFavDishComponent,
     FooterComponent,
-    BillAmountComponent
+    BillAmountComponent,
+    ApplicationAdminComponent,
+    OrderHistoryComponent
   ],
   imports: [
     BrowserModule,

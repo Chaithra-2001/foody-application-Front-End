@@ -1,9 +1,11 @@
 
 
+<ng-container *ngIf="dataloaded" >
+  
 
-
-<mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 20px; width: 100%; ">
-  <mat-grid-tile *ngFor="let restaurant of displayRestaurantss" class="list" >
+<mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 30px; width: 100%; "*ngIf="displayMessage(); else emptyBlock">
+  <h1>MY Restuarants</h1>
+  <mat-grid-tile style="margin-top: 30px;margin-bottom: 60px;" *ngFor="let restaurant of displayRestaurantss" class="list" >
     <mat-card   (click)="navigateToRestaurantDetails(restaurant.restId)"  class="dashboard-card"    >
             
       <img  [src]="restaurant.imageUrl" alt="image not found" >
@@ -12,16 +14,15 @@
        
         <h3 ><mat-icon>location</mat-icon>{{restaurant.location}}   </h3> 
       </mat-card-content>
-
-    
-      
-        <div style="display: flex;justify-content: space-between;">    
+      <div style="display: flex;justify-content: space-between;">    
         <a routerLink=""    *ngIf="ass.isAdmin && !ass.isUser"     (click)="deleteRestaurant(restaurant.restId)"><mat-icon >delete</mat-icon></a> 
         <a [routerLink]="['/EditRestaurants', restaurant.restId]"   *ngIf="ass.isAdmin && !ass.isUser"   ><mat-icon  >edit</mat-icon></a>
       </div>
   </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+<ng-template #emptyBlock><h1 class="message">Oops! No  Restaurant found...  please add Restaurant 😥</h1></ng-template> 
+</ng-container>
 
 
 

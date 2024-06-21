@@ -5,7 +5,7 @@
     margin-top: 4%;
     border: 1px black;
     padding: 30px;
-    box-shadow: 0 6px 8px rgb(216, 157, 85);
+    box-shadow: 0 6px 8px rgb(58, 57, 57);
 
 }
 
@@ -20,13 +20,16 @@ button {
     font-family: 'Lobster', cursive;
     margin-left: 15vw;
     font-size: 8vh;
-    margin-top: 35vh;
+    margin-top: 20vh;
+    margin-bottom: 30vh;
     color: rgb(130,42,42);
   }
-  
+  mat-form-field {
+    min-height: 5px;
+}
 
 h1 {
-    color: rgb(216, 157, 85);
+    color: rgb(145, 26, 24);
     font-weight: bolder;
 }
     .shadow-form {

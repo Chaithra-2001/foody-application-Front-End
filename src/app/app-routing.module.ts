@@ -11,7 +11,7 @@ import { UserLoginComponent } from './user-login/user-login.component';
 import { AddDishComponent } from './add-dish/add-dish.component';
 import { MerchantLoginComponent } from './merchant-login/merchant-login.component';
 import { MerchantRegisterComponent } from './merchant-register/merchant-register.component';
-import { ViewOneDishComponent } from './view-one-dish/view-one-dish.component';
+
 import { UserRegisterClosingGuard } from './guards/user-register-closing.guard';
 import { MerchantComponentGuard } from './guards/merchant.guard';
 import { AddDishClosingGuard } from './guards/add-dish-closing.guard';
@@ -24,104 +24,113 @@ import { AddToFavRestaurantComponent } from './add-to-fav-restaurant/add-to-fav-
 import { AddToFavDishComponent } from './add-to-fav-dish/add-to-fav-dish.component';
 import { UserComponentGuard } from './guards/user.guard';
 import { BillAmountComponent } from './bill-amount/bill-amount.component';
+import { ApplicationAdminComponent } from './application-admin/application-admin.component';
+import { AdministratorComponentGuard } from './guards/administarator.guard';
+import { OrderHistoryComponent } from './order-history/order-history.component';
 
 const routes: Routes = [
-//   {
-//   path:"",
-// redirectTo:'landing', pathMatch:'full'
-// },
-{
-  path:"",
-  component:HomeComponent,
-},
-{
-  path:"addRestaurants",
-component:AddRestaurantComponent,
-canActivate:[MerchantComponentGuard],
-canDeactivate:[AddRestaurantClosingGuard]
 
-},
-{
-  path:"EditRestaurants/:id",
-component:EditRestaurantComponent,
-canActivate:[MerchantComponentGuard],
-canDeactivate:[EditRestaurantClosingGuard]
-},
-{
-  path: "EditDish/:restId/:dishID",
-  component: EditDishComponent,
-  canActivate:[MerchantComponentGuard],
+  {
+    path: "",
+    component: HomeComponent,
+  },
+  {
+    path: "addRestaurants",
+    component: AddRestaurantComponent,
+    canActivate: [MerchantComponentGuard],
+    canDeactivate: [AddRestaurantClosingGuard]
 
-  canDeactivate:[EditDishClosingGuard]
+  },
+  {
+    path: "EditRestaurants/:id",
+    component: EditRestaurantComponent,
+    canActivate: [MerchantComponentGuard],
+    canDeactivate: [EditRestaurantClosingGuard]
+  },
+  {
+    path: "EditDish/:restId/:dishID",
+    component: EditDishComponent,
+    canActivate: [MerchantComponentGuard],
 
-},
-{
-  path:"merchantRegister",
-  component:MerchantRegisterComponent,
-  canDeactivate:[merchantRegisterClosingGuard]
-},
-{
-  path:"merchantLogin",
-  component:MerchantLoginComponent
-}
-,{
-  path:"addDishes",
-  component:AddDishComponent,
-   canActivate:[MerchantComponentGuard],
-   canDeactivate:[AddDishClosingGuard]
-},
-{
-path:"ViewMyRestaurants",
-component:ViewMyRestaurantsComponent,
-canActivate:[MerchantComponentGuard],
-},
+    canDeactivate: [EditDishClosingGuard]
 
-{
-  path:"Login",
-  component:UserLoginComponent,
+  },
+  {
+    path: "merchantRegister",
+    component: MerchantRegisterComponent,
+    canDeactivate: [merchantRegisterClosingGuard]
+  },
+  {
+    path: "merchantLogin",
+    component: MerchantLoginComponent
+  }
+  , {
+    path: "addDishes",
+    component: AddDishComponent,
+    canActivate: [MerchantComponentGuard],
+    canDeactivate: [AddDishClosingGuard]
+  },
+  {
+    path: "ViewMyRestaurants",
+    component: ViewMyRestaurantsComponent,
+    canActivate: [MerchantComponentGuard],
+  },
+  {
+    path: "administrator-page",
+    component: ApplicationAdminComponent,
+    canActivate: [AdministratorComponentGuard]
+  },
+  {
+    path: "Login",
+    component: UserLoginComponent,
 
-},
-{
-  path:"UserRegister",
-  component:UserRegisterComponent,
-
- 
-
-},
-{path:'bill-Amount',component:BillAmountComponent},
-{
-  path:"ViewRestaurant",
-  redirectTo:""
-},
-{
-  path:"ViewOneRestaurant/:restId",
-component:ViewRestaurantDishesComponent
-},
-{
-  path: 'ViewOneDish/:restId/:dishID',
-component:ViewOneDishComponent
-},
-
-{
-  path:"favoriteRestaurant",
-  component:AddToFavRestaurantComponent,
-  canActivate:[UserComponentGuard],
+  },
+  {
+    path: "UserRegister",
+    component: UserRegisterComponent,
 
 
- 
-},
 
-{
-  path:"favoriteDish",
-  component:AddToFavDishComponent,
-  canActivate:[UserComponentGuard],
- 
-},
+  },
+  {
+    path: 'bill-Amount', component: BillAmountComponent,
+    canActivate: [UserComponentGuard]
+  },
+  {
+    path: "ViewRestaurant",
+    redirectTo: "",
 
-{ 
-  path: '**', 
-component:PageNotFoundComponent
-},
+  },
+  {
+    path: "ViewOneRestaurant/:restId",
+    component: ViewRestaurantDishesComponent
+  },
+
+
+  {
+    path: "favoriteRestaurant",
+    component: AddToFavRestaurantComponent,
+    canActivate: [UserComponentGuard],
+
+
+
+  },
+
+  {
+    path: "favoriteDish",
+    component: AddToFavDishComponent,
+    canActivate: [UserComponentGuard],
+
+  },
+  {
+    path: "order-History",
+    component: OrderHistoryComponent,
+    canActivate: [UserComponentGuard],
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent
+  },
 
 ];
 

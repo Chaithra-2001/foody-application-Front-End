@@ -11,14 +11,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class UserRegisterComponent {
 
-togglePasswordVisibility() {
-throw new Error('Method not implemented.');
-}
+
   userForm!: FormGroup;
+  hide = true
+  constructor(private fb: FormBuilder, private us: UserService, private route: Router, private snackbar: MatSnackBar) { }
 
 
-hide=true
-  constructor(private fb: FormBuilder,private us:UserService,private route:Router,private snackbar:MatSnackBar) {}
   ngOnInit() {
     this.userForm = this.fb.group({
       emailId: ['', [Validators.required, Validators.email]],
@@ -30,6 +28,7 @@ hide=true
       restaurantList: this.fb.array([])
     });
   }
+  
   capitalizeFirstLetter(control: AbstractControl): { [key: string]: boolean } | null {
     const Name = control.value as string;
     if (Name && Name.length > 0) {
@@ -40,36 +39,37 @@ hide=true
     }
     return null;
   }
-  get emailId(){
+
+  get emailId() {
     return this.userForm.get("emailId");
   }
-  get password(){
+  get password() {
     return this.userForm.get("password");
   }
-  get userName(){
+  get userName() {
     return this.userForm.get("userName");
   }
 
-  get location(){
+  get location() {
     return this.userForm.get("location");
-      }
+  }
 
-      get phoneNumber(){
-        return this.userForm.get("phoneNumber");
-      }
+  get phoneNumber() {
+    return this.userForm.get("phoneNumber");
+  }
 
 
-  
+
   onSubmit() {
     this.us.register(this.userForm.value).subscribe(
       (data) => {
-          this.openSnackBar("Registered successfully");
+        this.openSnackBar("Registered successfully");
       },
       (error) => {
         if (error && error.error && error.error.error === "User already exists") {
-         
+
           this.openSnackBar("User with the same email ID already exists. Please use a different email ID");
-          
+
         } else {
           console.error("Error:", error);
           this.openSnackBar("Failed to add customer. Please try again later.");
@@ -78,6 +78,9 @@ hide=true
     );
     this.route.navigateByUrl("/Login")
   }
+
+
+
   canClose() {
     if (this.userForm.dirty && this.userForm.invalid) {
       let display = confirm("Changes you have made may not be saved! Please confirm");
@@ -90,7 +93,7 @@ hide=true
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 5000 
+      duration: 5000
     });
   }
 }

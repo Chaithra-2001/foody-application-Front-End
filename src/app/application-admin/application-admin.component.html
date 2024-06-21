@@ -1,0 +1,38 @@
+<div class="table-container">
+  <div class="table">
+    <div class="favdishes">
+      <p style="font-family: 'Belanosima', sans-serif, 'Cinzel', serif; font-size: xx-large; margin-bottom: 40px;">All
+        Merchants Details</p>
+    </div>
+    <table>
+      <thead>
+        <tr class="mainTitles">
+          <th class="td">Sl. No</th>
+          <th class="td">Merchant Email Id</th>
+          <th class="td">Restaurant Name</th>
+          <th class="td">Status</th>
+          <th class="td">Approve/Reject</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let merchant of allMerchantsData; let i = index">
+          <ng-container *ngFor="let restaurant of merchant.restaurantList; let j = index">
+            <tr>
+              <td>{{ getSerialNumber(i, j) }}</td>
+              <td>{{ merchant.emailId }}</td>
+              <td>{{ restaurant.name }}</td>
+              <td *ngIf="restaurant.status">Approved</td>
+              <td *ngIf="!restaurant.status">Pending</td>
+              <td>
+                <button *ngIf="!restaurant.status"
+                  (click)="restaurantAproval(merchant.emailId, restaurant)">Approve</button>
+                <button *ngIf="restaurant.status"
+                  (click)="restaurantReject(merchant.emailId, restaurant)">Reject</button>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

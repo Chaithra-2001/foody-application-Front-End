@@ -11,31 +11,30 @@ import { Component } from '@angular/core';
 })
 export class MerchantRegisterComponent {
 
-togglePasswordVisibility() {
-throw new Error('Method not implemented.');
-}
-userForm!: FormGroup;
 
-hide = true
-// passwordPattern: any = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
-visible:any ;
+  userForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private ms:MerchantService,private route:Router,private snackbar:MatSnackBar) {}
+  hide = true
+
+  visible: any;
+
+  constructor(private fb: FormBuilder, private ms: MerchantService, private route: Router, private snackbar: MatSnackBar) { }
   ngOnInit() {
     this.userForm = this.fb.group({
       merchantName: ['', [Validators.required, Validators.pattern('^[A-Z][a-zA-Z ]*$'), Validators.minLength(5), this.capitalizeFirstLetter]],
       emailId: ['', [Validators.required, Validators.pattern("^[a-zA-Z0-9._%+-]+@gmail\.com$")]],
-      password: ['', [Validators.required,]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
+      )]],
       role: ['Admin'],
-       location: ['', Validators.required],
-      phoneNumber:  ['', [Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]],
+      location: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{10}$/)]],
       restaurantList: this.fb.array([])
 
     });
-    
-  }
 
-  get merchantName(){
+  }
+  sampleemail: string = " Ex : abc@gmail.com"
+  get merchantName() {
     return this.userForm.get("merchantName");
   }
 
@@ -43,14 +42,14 @@ visible:any ;
     return this.userForm.get('emailId');
   }
 
-  get password(){
-return this.userForm.get('password');
+  get password() {
+    return this.userForm.get('password');
   }
 
-  get location(){
+  get location() {
     return this.userForm.get('location');
   }
-  get phoneNumber(){
+  get phoneNumber() {
     return this.userForm.get('phoneNumber');
   }
 
@@ -67,26 +66,6 @@ return this.userForm.get('password');
     return null;
   }
 
-  
-  // onSubmit() {
-  //   this.ms.register(this.userForm.value).subscribe(
-  //     (data) => {
-        
-  //       this.openSnackBar("Registered successfully");
-  //     },
-  //     (error) => {
-  //       if (error && error.error && error.error.error === "User already exists") {
-         
-  //         this.openSnackBar("User with the same email ID already exists. Please use a different email ID.");
-  //       } else {
-  //         console.error("Error:", error);
-          
-  //         this.openSnackBar("registered succesfully");
-  //       }
-  //     }
-  //   );
-  //   this.route.navigateByUrl("merchantLogin")
-  // }
 
   onSubmit() {
     this.ms.register(this.userForm.value).subscribe(
@@ -116,7 +95,7 @@ return this.userForm.get('password');
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 5000 
+      duration: 5000
     });
   }
 

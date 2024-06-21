@@ -14,61 +14,66 @@ import { Router } from '@angular/router';
 export class AddDishComponent {
   userForm!: FormGroup;
   restaurants: Restaurant[] = [];
+  dataloaded: boolean = false;
 
-  constructor(private fb: FormBuilder, private ms: MerchantService,public snackbar: MatSnackBar, public route: Router) {}
+  constructor(private fb: FormBuilder, private ms: MerchantService, public snackbar: MatSnackBar, public route: Router) { }
   ngOnInit() {
     this.userForm = this.fb.group({
       restId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
-      dishID: ['', Validators.required,Validators.pattern('^[0-9]+$')],
-      dishname: ['', Validators.required,Validators.pattern('^[a-zA-Z ]*$')],
-      category: ['', Validators.required,Validators.pattern('^[a-zA-Z ]*$')],
+      dishID: ['', Validators.required, Validators.pattern('^[0-9]+$')],
+      dishname: ['', Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
+      category: ['', Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
       price: ['', [Validators.required, Validators.pattern('^[0-9]{1,5}$')]],
-      rating: ['', Validators.required,Validators.pattern('^[0-9]+$')]
+      rating: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
     });
 
 
     this.fetchRestaurants(); // Fetch existing restaurants for dropdown
   }
 
-  get restId(){
+  get restId() {
     return this.userForm.get("restId");
   }
 
-  get dishID(){
+  get dishID() {
     return this.userForm.get("dishID");
   }
 
-  get dishname(){
+  get dishname() {
     return this.userForm.get("dishname");
 
   }
-  
-get category(){
-  return this.userForm.get("category");
-}
 
-get price(){
-  return this.userForm.get("price");
-}
+  get category() {
+    return this.userForm.get("category");
+  }
 
-get rating(){
-  return this.userForm.get("rating");
-}
+  get price() {
+    return this.userForm.get("price");
+  }
+
+  get rating() {
+    return this.userForm.get("rating");
+  }
+  get imageUrl() {
+    return this.userForm.get("imageUrl");
+  }
 
 
-dataloaded:boolean=false;
 
-restaurantsPresent: boolean = false; // Flag to track if restaurants are present
+
+// restaurantsPresent to track if restaurants are present
+  restaurantsPresent: boolean = false; 
   fetchRestaurants() {
     this.ms.merchantRestaurant().subscribe(
       (response: Restaurant[]) => {
         this.restaurants = response;
         this.restaurantsPresent = this.restaurants.length > 0;
-this.dataloaded=true
+        this.dataloaded = true
       },
       (error) => {
         console.error('Error fetching restaurants:', error);
-        this.dataloaded=true
+        this.dataloaded = true
       }
     );
   }
@@ -78,31 +83,32 @@ this.dataloaded=true
     this.addDishes(restaurantId, dishes);
   }
 
-  url:string= "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
+  url: string = "../../../assets/BackgroundImages/image-not-found-scaled-1150x647.png"
 
-  selectedFile:any=File
-  converter(file: any){
-    if(file.target.files){
-      const reader=new FileReader();
+  selectedFile: any = File
+  converter(file: any) {
+    if (file.target.files) {
+      const reader = new FileReader();
       reader.readAsDataURL(file.target.files[0]);
-      reader.onload=(event:any)=>{
-        this.url=event.target.result;
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
       }
-    }}
+    }
+  }
 
 
 
   addDishes(restaurantId: string, dishes: Dish[]) {
-    this.userForm.value.imageUrl=this.url
-    // console.log('Token:', this.ms.getToken());
+    this.userForm.value.imageUrl = this.url
+
     this.ms.addDish(restaurantId, dishes).subscribe(
       (response) => {
-   this.openSnackBar("Dish added successfully");
-       this.route.navigateByUrl('/ViewMyRestaurants');
+        this.openSnackBar("Dish added successfully");
+        this.route.navigate(['/ViewOneRestaurant', restaurantId]);
       },
       (error) => {
         console.error('Error adding dishes:', error);
-               this.openSnackBar("dish already exist");
+        this.openSnackBar("dish already exist");
       }
     );
   }
@@ -119,8 +125,8 @@ this.dataloaded=true
 
   openSnackBar(message: string) {
     this.snackbar.open(message, 'Close', {
-      duration: 5000 
+      duration: 5000
     });
   }
 
-     }
+}

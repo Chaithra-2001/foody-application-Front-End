@@ -15,4 +15,18 @@ img{
 .dashboard-card{
     margin-left: 40px; border-radius: 20px;width: 300%;
     border: 1px solide black;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
+  
+.message{
+    font-family: 'Lobster', cursive;
+    margin-left: 5vw;
+    font-size: 8vh;
+    margin-top: 20vh;
+    margin-bottom: 30vh;
+    color: rgb(130,42,42);
+  }
+  .list{
+    margin-bottom: 40px; margin-top: 20px; width: 100%; margin-bottom: 50px;
+  }

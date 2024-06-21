@@ -1,57 +1,58 @@
+<body class="full-page-background">
 
 
-  <body class="full-page-background">
+  <form class="example-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-card class="example-card">
+      <h1 style="color: rgba(84, 14, 9, 0.816);font-weight: 600;text-align: center;  font-family: 'Cinzel', serif;">
+        CREATE AN ACCOUNT</h1>
 
 
-    <form class="example-form"  [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <mat-card class="example-card" >
-        <h1    style="color: rgba(84, 14, 9, 0.816);font-weight: 600;text-align: center;  font-family: 'Cinzel', serif;"  >CREATE AN ACCOUNT</h1>
-  
-  
-        <mat-form-field >
-          <mat-label>User name</mat-label>
-          <input matInput  type="text" formControlName="userName">
-          <mat-error *ngIf="userName?.errors?.['required']">User name is required </mat-error>
-        </mat-form-field>
-       
-     
-  
-        <mat-form-field>
-          <mat-label>Email Id</mat-label>
-          <input matInput  type="text" formControlName="emailId">
-          <mat-error *ngIf="emailId?.errors?.['required']">Email id is required </mat-error>
-        </mat-form-field>
-  
-       
-      
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
-          <button style="color: black;" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-          <mat-error *ngIf="password?.errors?.['required']">Password is required </mat-error>
-        </mat-form-field>
-    
-  
-    
-        <mat-form-field>
-          <mat-label>Location</mat-label>
-          <input matInput type="text" formControlName="location">
-          <mat-error *ngIf="location?.errors?.['required']">Location is required </mat-error>
-        </mat-form-field>
-    
-        <mat-form-field>
-          <mat-label>Phone Number</mat-label>
-          <input matInput type="text" formControlName="phoneNumber">
-          <mat-error *ngIf="phoneNumber?.errors?.['required']">Restaurant id is required </mat-error>
-        </mat-form-field>
-    
-        <button mat-raised-button [disabled]="userForm.invalid"   style="background-color: rgb(109, 107, 104); height: 50px;"  >Sign Up </button>
-        <b style="margin-top: 10px;color: rgb(16, 19, 22);text-align: center;">Already a member?<a routerLink="/Login"
+      <mat-form-field>
+        <mat-label>User name</mat-label>
+        <input matInput type="text" formControlName="userName">
+        <mat-error *ngIf="userName?.errors?.['required']">User name is required </mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field>
+        <mat-label>Email Id</mat-label>
+        <input matInput type="text" formControlName="emailId">
+        <mat-error *ngIf="emailId?.errors?.['required']">Email id is required </mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password" [type]="hide ? 'password' : 'text'">
+        <button style="color: black;" mat-icon-button matSuffix (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password?.errors?.['required']">Password is required </mat-error>
+      </mat-form-field>
+
+
+
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput type="text" formControlName="location">
+        <mat-error *ngIf="location?.errors?.['required']">Location is required </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" formControlName="phoneNumber">
+        <mat-error *ngIf="phoneNumber?.errors?.['required']">Restaurant id is required </mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button [disabled]="userForm.invalid"
+        style="background-color: rgb(109, 107, 104); height: 50px;">Sign Up </button>
+      <b style="margin-top: 10px;color: rgb(16, 19, 22);text-align: center;">Already a member?<a routerLink="/Login"
           style="margin-left: 10px;color: rgb(42, 24, 205);">Login</a></b>
-      </mat-card>
-    </form>
-  
+    </mat-card>
+  </form>
 
-  </body>
+
+</body>

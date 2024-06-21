@@ -1,6 +1,6 @@
 export type favdish={
     dishID:string,
-    name:string,
+    dishname:string,
     imageUrl:string,
     category:string,
     price:number,

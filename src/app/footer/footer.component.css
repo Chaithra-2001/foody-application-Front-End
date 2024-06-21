@@ -6,7 +6,8 @@
  
   float: bottom;
  /* padding-left: 30px; */
- background-color: rgb(165, 163, 163);
+ background-color: rgb(83, 83, 83);
+ color: #efe6e6;
   }
  
   .links-section {
@@ -17,7 +18,7 @@
   }
   
   .links-section > div {
-    width: calc(25% - 20px); /* Adjust width as needed */
+    width: calc(25% - 20px); 
     margin-bottom: 20px;
   }
   
@@ -34,7 +35,7 @@
   padding-right: 30px;
   list-style: none;
   display: flex;
-  gap: 10px; /* Adjust the spacing between icons */
+  gap: 10px; 
 }
 .social-network a.icoRss:hover {
   background-color: #F56505;
@@ -63,10 +64,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px; /* Adjust the width of each icon container */
-  height: 40px; /* Adjust the height of each icon container */
-  border-radius: 50%; /* Make the icons circular */
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%; 
   background-color: rgb(165, 163, 163);
-  color: #170303; /* Icon color */
+  color: #170303; 
  
 }

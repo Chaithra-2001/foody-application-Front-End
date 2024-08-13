@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   allRestaurants: Restaurant[] = [];
   displayedRestaurants: Restaurant[] = [];
   currentPage: number = 0;
-  pageSize: number = 6; // Number of cards per page
+  pageSize: number = 6; 
   searchString: string = '';
   totalPages: number = 0;
 

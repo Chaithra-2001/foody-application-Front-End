@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Restaurant } from '../models/restaurant';
 import { MerchantService } from '../services/merchant.service';
 import { Router } from '@angular/router';
-import { Restaurant } from '../models/restaurant';
 import { UserService } from '../services/user.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { Favrestaurant } from '../models/favrestaurant';
@@ -10,26 +10,34 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  userEmail: any;
-  restaurantId: any | string;
+  allRestaurants: Restaurant[] = [];
+  displayedRestaurants: Restaurant[] = [];
+  currentPage: number = 0;
+  pageSize: number = 6; // Number of cards per page
   searchString: string = '';
-  displayRestaurantss: Restaurant[] = []
+  totalPages: number = 0;
 
-  constructor(private ms: MerchantService, private route: Router, private us: UserService, public ass: AuthenticationService, private snackBar: MatSnackBar) { }
-
+  constructor(
+    private ms: MerchantService,
+    private route: Router,
+    private us: UserService,
+    public ass: AuthenticationService,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
-    this.getAllRestaurants()
+    this.getAllRestaurants();
   }
-
 
   getAllRestaurants() {
     this.ms.displayRestaurant().subscribe(
       (response) => {
-        this.displayRestaurantss = response;
+        this.allRestaurants = response;
+        this.totalPages = Math.ceil(this.allRestaurants.length / this.pageSize);
+        this.updateDisplayedRestaurants();
       },
       (error) => {
         console.error('Error fetching restaurants:', error);
@@ -37,28 +45,38 @@ export class HomeComponent implements OnInit {
     );
   }
 
+  updateDisplayedRestaurants() {
+    const start = this.currentPage * this.pageSize;
+    const end = start + this.pageSize;
+    this.displayedRestaurants = this.allRestaurants.slice(start, end);
+  }
 
+  onPageChange(page: number) {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.updateDisplayedRestaurants();
+    }
+  }
 
+  filter() {
+    if (this.searchString !== '') {
+      this.allRestaurants = this.allRestaurants.filter((data) => {
+        return data.name?.toLowerCase().startsWith(this.searchString.toLowerCase());
+      });
+    } else {
+      this.getAllRestaurants();
+    }
+    this.totalPages = Math.ceil(this.allRestaurants.length / this.pageSize);
+    this.updateDisplayedRestaurants();
+  }
 
   navigateToRestaurantDetails(restId: string): void {
     this.route.navigate(['/ViewOneRestaurant', restId]);
   }
 
-  filter() {
-    if (this.searchString != "") {
-      this.displayRestaurantss = this.displayRestaurantss.filter((data) => {
-        return data.name?.toLowerCase().startsWith(this.searchString.toLowerCase());
-      });
-    }
-    else {
-      this.getAllRestaurants();
-    }
-  }
-
-
   addtofav(restaurant: Restaurant, event: Event) {
     event.preventDefault(); // Prevent default form submission behavior
-  
+
     const newFavRestaurant: Favrestaurant = {
       restId: restaurant.restId || '',
       name: restaurant.name || '',
@@ -66,12 +84,12 @@ export class HomeComponent implements OnInit {
       location: restaurant.location || '',
       favoriteDish: []
     };
-  
+
     if (!this.ass.isUser) {
       this.route.navigateByUrl("/Login");
       return;
     }
-  
+
     this.us.addFavRestaurant(newFavRestaurant).subscribe(
       (data) => {
         console.log('restaurant added to favorites:', data);
@@ -89,6 +107,4 @@ export class HomeComponent implements OnInit {
       }
     );
   }
-  
-
 }

@@ -2,8 +2,8 @@
   
   <mat-sidenav   style="background-color:rgb(255, 252, 252);" #drawer class="sidenav" fixedInViewport   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"[mode]="'side'"[opened]="(isHandset$ | async) === false">
 
-      <h1 routerLink="/"  *ngIf="ass.isAdmin || ass.isUser || ass.isOwner"    class="colorful-text" style="margin-top: 30px;"  >Welcome to Swift </h1>
-    <img style="width: 80%; height: 10%;margin-top: 20px;color: brown;" src="../../assets/WhatsApp Image 2023-06-22 at 09.48.39.jpg" alt="">
+      <!-- <h1 routerLink="/"  *ngIf="ass.isAdmin || ass.isUser || ass.isOwner"    class="colorful-text" style="margin-top: 30px;"  >Welcome to Swift </h1> -->
+      <h1 routerLink="/"  style="margin-top: 40px;margin-left: 50px;" class="colorful-text"  >Swift </h1>
 
     <mat-nav-list>
      <button class="navButton1"   *ngIf="ass.isAdmin && ass.isUser==false" routerLink="ViewMyRestaurants"><mat-icon style="margin-left: -2vw;margin-bottom: -1vh;position: absolute;"> visibility</mat-icon>My Restaurant</button>
@@ -33,8 +33,10 @@
       <mat-nav-list style="display: flex; margin-left: 850px; padding: 20px;">
         
         <button  class="log" *ngIf="ass.isAdmin==false && ass.isUser==true"   routerLink="/bill-Amount"><mat-icon style="position: absolute;margin-left: -2vw;">shopping_cart</mat-icon>My Cart</button>
-        <button *ngIf="!ass.isAdmin && !ass.isUser && !ass.isOwner"   routerLink="UserRegister" class="log"> <mat-icon style="margin-bottom: -0.5vh ;margin-left:-1vw;margin-right: 1vw;">person_add</mat-icon>Sign Up</button>
+      
+        <button *ngIf="!ass.isAdmin && !ass.isUser && !ass.isOwner" class="log"  routerLink="UserRegister" > <mat-icon style="margin-bottom: -0.5vh ;margin-left:-1vw;margin-right: 1vw;">person_add</mat-icon>Sign Up</button>
         
+  
       </mat-nav-list>
    
 
@@ -45,6 +47,7 @@
   </mat-sidenav-content>
   
 </mat-sidenav-container> 
+
 
 
 

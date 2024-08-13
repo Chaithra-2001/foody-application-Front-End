@@ -26,9 +26,8 @@
 </div>
 
 
-
 <div class="restaurantData">
-  <tr *ngFor="let restaurant of displayRestaurantss">
+  <tr *ngFor="let restaurant of displayedRestaurants">
     <div *ngIf="restaurant.status==true">
       <div style=" margin-bottom: 80px;" (click)="navigateToRestaurantDetails(restaurant.restId)">
 
@@ -42,7 +41,7 @@
           </div>
       
         <mat-icon class="favButton" *ngIf="ass.isAdmin==false || ass.isUser==true"
-          (click)="addtofav(restaurant, $event)">favorite</mat-icon>
+          (click)="addtofav(restaurant, $event)">favorite_border</mat-icon>
 
 
       </div>
@@ -51,4 +50,18 @@
   </tr>
 
 
+</div>
+
+<div style="display: flex; justify-content: center; margin-top: 50px; margin-bottom: 80px;">
+  <button mat-raised-button (click)="onPageChange(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+  <div style="margin: 0 20px;">
+    <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+      <button style="margin-right: 10px;" mat-raised-button
+              (click)="onPageChange(i)"
+              [color]="currentPage === i ? 'warn' : ''">
+        {{i + 1}}
+      </button>
+    </ng-container>
+  </div>
+  <button mat-raised-button (click)="onPageChange(currentPage + 1)" [disabled]="(currentPage + 1) * pageSize >= allRestaurants.length">Next</button>
 </div>

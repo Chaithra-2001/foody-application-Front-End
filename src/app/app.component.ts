@@ -17,11 +17,11 @@ export class AppComponent {
   }
 
 
-  @HostListener('window:beforeunload', ['$event'])
-  onBeforeUnload(event: any): void {
-    sessionStorage.clear() // Clear session storage on beforeunload event
-    this.router.navigateByUrl("/")
-  }
+  // @HostListener('window:beforeunload', ['$event'])
+  // onBeforeUnload(event: any): void {
+  //   sessionStorage.clear() // Clear session storage on beforeunload event
+  //   this.router.navigateByUrl("/")
+  // }
 
 
 }

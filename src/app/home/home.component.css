@@ -139,6 +139,7 @@ a{
     position: absolute;
     margin-left: 23vw;
     margin-top: -7vh;
+    color: rgb(247, 7, 7);
 }
 .favButton:hover{
   color: red;
@@ -230,6 +231,13 @@ input{
 
 }
 
+.primary-class {
+  color: primary; /* replace with actual color or class */
+}
+
+.grey-class {
+  color: grey;
+}
 
 
 

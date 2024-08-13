@@ -108,3 +108,10 @@ button:hover {
    
       color: rgb(130,42,42);
 }
+app-footer {
+  margin-top: auto;
+  background-color: #f8f9fa; /* Adjust color as needed */
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+}

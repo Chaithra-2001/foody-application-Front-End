@@ -1,10 +1,10 @@
 
-
+<h1>My Restuarants</h1>
 <ng-container *ngIf="dataloaded" >
   
 
 <mat-grid-list cols="3" rowHeight="300px" style="margin-bottom: 40px; margin-top: 30px; width: 100%; "*ngIf="displayMessage(); else emptyBlock">
-  <h1>MY Restuarants</h1>
+
   <mat-grid-tile style="margin-top: 30px;margin-bottom: 60px;" *ngFor="let restaurant of displayRestaurantss" class="list" >
     <mat-card   (click)="navigateToRestaurantDetails(restaurant.restId)"  class="dashboard-card"    >
             

@@ -27,7 +27,7 @@ import { EditRestaurantComponent } from './edit-restaurant/edit-restaurant.compo
 import { EditDishComponent } from './edit-dish/edit-dish.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ViewRestaurantDishesComponent } from './view-restaurant-dishes/view-restaurant-dishes.component';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ViewMyRestaurantsComponent } from './view-my-restaurants/view-my-restaurants.component';
@@ -38,6 +38,7 @@ import { FooterComponent } from './footer/footer.component';
 import { BillAmountComponent } from './bill-amount/bill-amount.component';
 import { ApplicationAdminComponent } from './application-admin/application-admin.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 
@@ -56,7 +57,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     EditDishComponent,
     PageNotFoundComponent,
     ViewRestaurantDishesComponent,
-  
+
     ViewMyRestaurantsComponent,
     AddToFavRestaurantComponent,
     AddToFavDishComponent,
@@ -79,9 +80,11 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     MatInputModule,
     FormsModule,
     MatCardModule,
+    MatPaginatorModule,
     MatGridListModule,
     MatSnackBarModule,ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
     
   ],
   providers: [

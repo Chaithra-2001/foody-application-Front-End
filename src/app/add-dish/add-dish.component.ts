@@ -28,7 +28,7 @@ export class AddDishComponent {
     });
 
 
-    this.fetchRestaurants(); // Fetch existing restaurants for dropdown
+    this.fetchRestaurants(); 
   }
 
   get restId() {
@@ -59,10 +59,6 @@ export class AddDishComponent {
     return this.userForm.get("imageUrl");
   }
 
-
-
-
-// restaurantsPresent to track if restaurants are present
   restaurantsPresent: boolean = false; 
   fetchRestaurants() {
     this.ms.merchantRestaurant().subscribe(

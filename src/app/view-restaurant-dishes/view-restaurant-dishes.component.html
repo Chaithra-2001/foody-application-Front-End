@@ -5,14 +5,14 @@
     <mat-icon style="color: black;margin-left: 15px;">location_on</mat-icon>{{displayRestaurant.location}}
   </h1>
 </div> -->
-<h1 class="h1tag">{{displayRestaurant.name |titlecase}}</h1>
+<h1 class="h1tag">{{displayRestaurant.restId|titlecase}}</h1>
 
-<mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
+<!-- <mat-form-field style="margin-left: 30%; width:40% ; margin-top: 20px;">
   <mat-label>Search for Dishes here</mat-label>
   <input matInput [(ngModel)]="searchString" (mouseenter)="filter()">
   <mat-icon matSuffix (click)="filter()">search</mat-icon>
-</mat-form-field>
-
+</mat-form-field> -->
+<input matInput type="text" style="border-radius: 20px; padding: 10px;width: 50%;height: 50px;margin-left: 340px;margin-bottom: 60px; box-shadow: 0 0 5em -1em black;border: 2px solid black;margin-top: 50px;" placeholder="Search for Dishes here" [(ngModel)]="searchString" (input)="filter()">
 <div class="button-container">
   <button class="sortButton" mat-button [matMenuTriggerFor]="aboveMenu">
     <mat-icon>filter_list</mat-icon>Filter By
@@ -34,11 +34,11 @@
 
 
   <button class="sortButton" mat-button (click)="toggleMenu()">Menu</button>
-  <div style="border: 2px solid black; padding: 20px; font-size:x-large;" *ngIf="menuVisible">
+  <div style="border: 2px solid black; padding: 20px; font-size:x-large;border-radius: 20px;" *ngIf="menuVisible">
     <h2 style="text-align: center;">Menu</h2>
     <ol>
       <li *ngFor="let dish of displayRestaurant.dishList" style="margin-top: 15px;">
-        {{ dish.dishname }} - {{ dish.price | currency }}
+        {{ dish.dishID }} - {{ dish.price | currency }}
       </li>
     </ol>
   </div>
@@ -48,7 +48,7 @@
 <div class="main">
   <div class="dishcard" *ngFor="let dish of displayRestaurant.dishList">
     <img class="images" [src]="dish.imageUrl" alt={{dish.dishname}}>
-    <p style="font-size:x-large;margin-top: 1vh;">{{dish.dishname}}</p>
+    <p style="font-size:x-large;margin-top: 1vh;">{{dish.dishID}}</p>
     <p style="margin-left: 0vw; font-size:3.5vh;margin-top: 0vh;">
       <ng-container *ngFor="let _ of [].constructor(dish.rating)">
         <mat-icon class="star-icon">star</mat-icon>
@@ -63,7 +63,7 @@
     <div style="display: flex;justify-content: space-between;">
 
       <button *ngIf="ass.isAdmin && !ass.isUser" (click)="delete(displayRestaurant.restId, dish.dishID)" class="btns"
-        style="margin-left: 10px;">delete</button>
+        style="margin-left: 10px;">Delete</button>
       <button *ngIf="ass.isAdmin && !ass.isUser" [routerLink]="['/EditDish', displayRestaurant.restId, dish.dishID]"
         class="btns" style="margin-right: 10px;">Edit</button>
     </div>

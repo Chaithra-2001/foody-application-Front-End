@@ -127,16 +127,29 @@ export class ViewRestaurantDishesComponent implements OnInit {
   }
 
 
+  // filter() {
+  //   if (this.searchString !== "") {
+  //     this.displayRestaurant.dishList = this.displayRestaurant.dishList.filter((dish) => {
+  //       return dish.dishname?.toLowerCase().startsWith(this.searchString.toLowerCase());
+  //     });
+  //   } else {
+
+  //     this.getOneRestaurantdetails(this.displayRestaurant.restId);
+  //   }
+  // }
   filter() {
-    if (this.searchString !== "") {
+    if (this.searchString.trim() !== '') {
+      // Filter dishes based on searchString (can be dishID or dishname)
       this.displayRestaurant.dishList = this.displayRestaurant.dishList.filter((dish) => {
-        return dish.dishname?.toLowerCase().startsWith(this.searchString.toLowerCase());
+        return dish.dishID?.toLowerCase().startsWith(this.searchString.toLowerCase()) || 
+               dish.dishname?.toLowerCase().startsWith(this.searchString.toLowerCase());
       });
     } else {
-
+      // Reset to all dishes if search is cleared
       this.getOneRestaurantdetails(this.displayRestaurant.restId);
     }
   }
+  
 
   filterdDishes: any = [];
   dishFilter: boolean = false

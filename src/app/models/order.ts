@@ -4,7 +4,7 @@ export type Order = {
   date?: string,
   dishes?: [
     {
-      dishname?: string,
+      dishID?: string,
       price?: number,
       category?: string,
       imageUrl?: string,

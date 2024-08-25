@@ -21,7 +21,7 @@ export class AddDishComponent {
     this.userForm = this.fb.group({
       restId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       dishID: ['', Validators.required, Validators.pattern('^[0-9]+$')],
-      dishname: ['', Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
+      // dishname: ['', Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
       category: ['', Validators.required, Validators.pattern('^[a-zA-Z ]*$')],
       price: ['', [Validators.required, Validators.pattern('^[0-9]{1,5}$')]],
       rating: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]

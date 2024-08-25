@@ -44,11 +44,11 @@
       <mat-form-field>
         <mat-label>Phone Number</mat-label>
         <input matInput type="text" formControlName="phoneNumber">
-        <mat-error *ngIf="phoneNumber?.errors?.['required']">Restaurant id is required </mat-error>
+        <mat-error *ngIf="phoneNumber?.errors?.['required']">Phone number is required </mat-error>
       </mat-form-field>
 
       <button mat-raised-button [disabled]="userForm.invalid"
-        style="background-color: rgb(109, 107, 104); height: 50px;">Sign Up </button>
+        style="background-color: rgb(109, 107, 104); height: 50px;color: aliceblue;">Sign Up </button>
       <b style="margin-top: 10px;color: rgb(16, 19, 22);text-align: center;">Already a member?<a routerLink="/Login"
           style="margin-left: 10px;color: rgb(42, 24, 205);">Login</a></b>
     </mat-card>

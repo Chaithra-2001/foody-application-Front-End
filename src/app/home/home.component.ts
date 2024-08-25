@@ -58,53 +58,102 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  filter() {
-    if (this.searchString !== '') {
-      this.allRestaurants = this.allRestaurants.filter((data) => {
-        return data.name?.toLowerCase().startsWith(this.searchString.toLowerCase());
-      });
-    } else {
-      this.getAllRestaurants();
-    }
-    this.totalPages = Math.ceil(this.allRestaurants.length / this.pageSize);
-    this.updateDisplayedRestaurants();
-  }
+  // filter() {
+  //   if (this.searchString !== '') {
+  //     this.allRestaurants = this.allRestaurants.filter((data) => {
+  //       return data.name?.toLowerCase().startsWith(this.searchString.toLowerCase());
+  //     });
+  //   } else {
+  //     this.getAllRestaurants();
+  //   }
+  //   this.totalPages = Math.ceil(this.allRestaurants.length / this.pageSize);
+  //   this.updateDisplayedRestaurants();
+  // }
 
   navigateToRestaurantDetails(restId: string): void {
     this.route.navigate(['/ViewOneRestaurant', restId]);
   }
-
-  addtofav(restaurant: Restaurant, event: Event) {
-    event.preventDefault(); // Prevent default form submission behavior
-
-    const newFavRestaurant: Favrestaurant = {
-      restId: restaurant.restId || '',
-      name: restaurant.name || '',
-      imageUrl: restaurant.imageUrl || '',
-      location: restaurant.location || '',
-      favoriteDish: []
-    };
-
-    if (!this.ass.isUser) {
-      this.route.navigateByUrl("/Login");
-      return;
+  filter() {
+    if (this.searchString.trim() !== '') {
+      // Filter restaurants based on search string
+      const filteredRestaurants = this.allRestaurants.filter((data) => {
+        return data.restId?.toLowerCase().includes(this.searchString.toLowerCase());
+      });
+      this.displayedRestaurants = filteredRestaurants.slice(this.currentPage * this.pageSize, (this.currentPage + 1) * this.pageSize);
+      this.totalPages = Math.ceil(filteredRestaurants.length / this.pageSize);
+    } else {
+          this.totalPages = Math.ceil(this.allRestaurants.length / this.pageSize);
+      // Reset to original displayed restaurants if the search is cleared
+      this.updateDisplayedRestaurants();
     }
-
-    this.us.addFavRestaurant(newFavRestaurant).subscribe(
-      (data) => {
-        console.log('restaurant added to favorites:', data);
-        this.snackBar.open('restaurant added to favorites successfully', 'Close', {
-          duration: 3000,
-        });
-        this.route.navigateByUrl("/");
-      },
-      (error) => {
-        console.error('Error adding restaurant to favorites:', error);
-        this.snackBar.open('restaurant already present favorites', 'Close', {
-          duration: 3000,
-        });
-        this.route.navigateByUrl("/");
-      }
-    );
   }
+  
+
+  // addtofav(restaurant: Restaurant, event: Event) {
+  //   event.preventDefault(); // Prevent default form submission behavior
+
+  //   const newFavRestaurant: Favrestaurant = {
+  //     restId: restaurant.restId || '',
+  //     name: restaurant.name || '',
+  //     imageUrl: restaurant.imageUrl || '',
+  //     location: restaurant.location || '',
+  //     favoriteDish: []
+  //   };
+
+  //   if (!this.ass.isUser) {
+  //     this.route.navigateByUrl("/Login");
+  //     return;
+  //   }
+
+  //   this.us.addFavRestaurant(newFavRestaurant).subscribe(
+  //     (data) => {
+  //       console.log('restaurant added to favorites:', data);
+  //       this.snackBar.open('restaurant added to favorites successfully', 'Close', {
+  //         duration: 3000,
+  //       });
+  //       this.route.navigateByUrl("/");
+  //     },
+  //     (error) => {
+  //       console.error('Error adding restaurant to favorites:', error);
+  //       this.snackBar.open('restaurant already present favorites', 'Close', {
+  //         duration: 3000,
+  //       });
+  //       this.route.navigateByUrl("/");
+  //     }
+  //   );
+  // }
+  addtofav(restaurant: Restaurant, event: Event) {
+  event.preventDefault(); // Prevent default form submission behavior
+  event.stopPropagation(); // Stop event propagation to avoid triggering the parent div click
+
+  const newFavRestaurant: Favrestaurant = {
+    restId: restaurant.restId || '',
+    name: restaurant.name || '',
+    imageUrl: restaurant.imageUrl || '',
+    location: restaurant.location || '',
+    favoriteDish: []
+  };
+
+  if (!this.ass.isUser) {
+    this.route.navigateByUrl("/Login");
+    return;
+  }
+
+  this.us.addFavRestaurant(newFavRestaurant).subscribe(
+    (data) => {
+      console.log('Restaurant added to favorites:', data);
+      this.snackBar.open('Restaurant added to favorites successfully', 'Close', {
+        duration: 3000,
+      });
+      // Optionally, you can update the UI to reflect the addition to favorites without reloading.
+    },
+    (error) => {
+      console.error('Error adding restaurant to favorites:', error);
+      this.snackBar.open('Restaurant already present in favorites', 'Close', {
+        duration: 3000,
+      });
+    }
+  );
+}
+
 }

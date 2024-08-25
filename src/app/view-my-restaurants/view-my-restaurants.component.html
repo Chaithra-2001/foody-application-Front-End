@@ -1,4 +1,4 @@
-
+<!-- 
 <h1>My Restuarants</h1>
 <ng-container *ngIf="dataloaded" >
   
@@ -23,8 +23,27 @@
 </mat-grid-list>
 <ng-template #emptyBlock><h1 class="message">Oops! No  Restaurant found...  please add Restaurant 😥</h1></ng-template> 
 </ng-container>
-
-
+ -->
+ <div style="margin-top: 20px;margin-left: 20px;" >
+  <p style="font-family: 'Belanosima', sans-serif, 'Cinzel', serif; font-size: xx-large; margin-bottom: 30px;">MY RESTAURANTS</p>
+</div>
+  <ng-container *ngIf="dataloaded">
+    <div class="main" *ngIf="displayRestaurantss && displayRestaurantss.length > 0; else emptyBlock">
+      <div class="dishcard" *ngFor="let restaurant of displayRestaurantss" (click)="navigateToRestaurantDetails(restaurant.restId)">
+        <img class="images" [src]="restaurant.imageUrl" alt="{{restaurant.name}}">
+        <p class="restaurantName">{{restaurant.restId |titlecase}}</p>
+            <h3 style="color: black;margin-bottom: 10px;text-align: left;margin-left: 15px;font-family: Verdana, Geneva, Tahoma, sans-serif">{{restaurant.location |titlecase}}</h3>
+        <div style="display: flex;justify-content: space-between;">
+          <button routerLink="" *ngIf="ass.isAdmin && !ass.isUser" (click)="deleteRestaurant(restaurant.restId)" class="btns" style="margin-left: 10px;">Delete</button>
+          <button [routerLink]="['/EditRestaurants', restaurant.restId]" *ngIf="ass.isAdmin && !ass.isUser" class="btns" style="margin-right: 10px;">Edit</button>
+        </div>
+      </div>
+    </div>
+  
+    <ng-template #emptyBlock>
+      <h1 class="message">Oops! No Restaurant found... please add Restaurant 😥</h1>
+    </ng-template>
+  </ng-container>
 
 
 

@@ -152,7 +152,7 @@ export class AddRestaurantComponent {
   ngOnInit() {
     this.userForm = this.fb.group({
       restId: ['', Validators.required],
-      name: ['', Validators.required],
+      // name: ['', Validators.required],
       imageUrl: ['',],
       location: ['', Validators.required],
       status: ['false', []],

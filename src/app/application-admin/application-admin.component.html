@@ -20,7 +20,7 @@
             <tr>
               <td>{{ getSerialNumber(i, j) }}</td>
               <td>{{ merchant.emailId }}</td>
-              <td>{{ restaurant.name }}</td>
+              <td>{{ restaurant.restId }}</td>
               <td *ngIf="restaurant.status">Approved</td>
               <td *ngIf="!restaurant.status">Pending</td>
               <td>

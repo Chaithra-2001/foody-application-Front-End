@@ -8,24 +8,31 @@
 
         <h1>ADD DISHES</h1>
 
+
+     
         <mat-label>Select Restaurant Here</mat-label>
         <select formControlName="restId" style="width: 50%; height: 100%;">
           <option *ngFor="let restaurant of restaurants" style="height: 30%;" [value]="restaurant.restId">{{
             restaurant.restId }}</option>
           <mat-error *ngIf="restId?.errors?.['required']">Restaurant Id is required </mat-error>
         </select><br>
-
-        <mat-form-field>
-          <mat-label>Dish ID</mat-label>
-          <input matInput formControlName="dishID">
-          <mat-error *ngIf="dishID?.errors?.['required']">Dish Id is required </mat-error>
-        </mat-form-field>
+        
+        <p>Upload Image :</p>
+        <div style="margin-bottom: 10px;">
+          <input (change)="converter($event)" type="file" formControlName="imageUrl" name="imageUrl" class="text" />
+        </div>
 
         <mat-form-field>
           <mat-label>Dish Name</mat-label>
+          <input matInput formControlName="dishID">
+          <mat-error *ngIf="dishID?.errors?.['required']">Dish name is required </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+          <mat-label>Dish Name</mat-label>
           <input matInput formControlName="dishname">
           <mat-error *ngIf="dishname?.errors?.['required']">Dish name is required </mat-error>
-        </mat-form-field>
+        </mat-form-field> -->
 
 
         <mat-form-field>
@@ -44,12 +51,6 @@
         </mat-form-field>
 
 
-
-
-        <p>Upload Image :</p>
-        <div style="margin-bottom: 10px;">
-          <input (change)="converter($event)" type="file" formControlName="imageUrl" name="imageUrl" class="text" />
-        </div>
 
 
         <mat-form-field>

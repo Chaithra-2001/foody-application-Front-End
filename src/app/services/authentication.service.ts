@@ -67,11 +67,12 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 // import { Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -86,10 +87,26 @@ export class AuthenticationService {
   isOwner:boolean=false;
   useremailid:any
 
+  // constructor(private  httpClient: HttpClient,private router:Router,private snackBar:MatSnackBar) {
+  //   this.loadToken();
+  // }
+  private userSubject = new BehaviorSubject<User | null>(null);
+  user$ = this.userSubject.asObservable();
+
+
   constructor(private  httpClient: HttpClient,private router:Router,private snackBar:MatSnackBar) {
-    this.loadToken();
+    // Optionally initialize user from sessionStorage
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+      this.userSubject.next(JSON.parse(storedUser));
+    }
   }
 
+  // Call this method on successful login
+  setUser(user: User) {
+    sessionStorage.setItem('user', JSON.stringify(user));
+    this.userSubject.next(user);
+  }
    loadToken(): void {
     this.token = sessionStorage.getItem(this.tokenKey);
     }

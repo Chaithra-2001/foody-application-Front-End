@@ -25,14 +25,14 @@ a {
 
 
 /* Add this to your component's style or global styles */
-.list:hover .dashboard-card {
-  /* Apply your hover styles here */
+/* .list:hover .dashboard-card {
+  
   box-shadow: 1px 4px 8px rgba(0.9, 0.9, 0.9, 0.9);
   transform: scale(1.01);
   transition: box-shadow 0.7s ease-in-out, transform 0.3s ease-in-out;
   
   z-index: 1;
-}
+} */
 
 
 
@@ -90,11 +90,11 @@ a {
 
 
 }
-.restaurantCard:hover{
+/* .restaurantCard:hover{
     box-shadow: 0 0 5em -1em black;
     transform: scale(1.1);
 
-}
+} */
 
 .restaurantName{
     margin-top: 3vh;
@@ -103,6 +103,8 @@ a {
     font-weight: 800;
     font-size: 3vh;
     font-family: 'Cinzel', serif;
+    text-align: left;
+    margin-left: 15px;
 
 
 }
@@ -225,6 +227,8 @@ input{
 
 
 }
+
+
 .restaurantCard:hover{
   box-shadow: 0 0 5em -1em black;
   transform: scale(1.1);

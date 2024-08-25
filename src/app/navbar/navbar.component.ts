@@ -1,18 +1,16 @@
-import { Component, Inject, Input, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { NavigationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
-import { UserService } from '../services/user.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserLoginComponent } from '../user-login/user-login.component';
 import { MerchantService } from '../services/merchant.service';
+import { User } from '../models/user';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
   private breakpointObserver = inject(BreakpointObserver);
@@ -23,47 +21,51 @@ export class NavbarComponent implements OnInit {
       shareReplay()
     );
 
-
-
-
-  userEmail: string | null = '';
-  token: string | null = '';
-  getdaa: any;
-  user: any
+  user: User = {
+    userEmailId: '',
+    password: '',
+    userName: '',
+    role: '',
+    location: '',
+    phoneNumber: '',
+    restaurants: [],
+    dishes: []
+  };
 
   constructor(
-
     public ass: AuthenticationService,
-    private userService: UserService,
-    private ms: MerchantService
-) { }
-
-
- 
+    private ms: MerchantService,
+    private router: Router
+  ) { }
   ngOnInit() {
-    this.getdata()
-    this.userService.getUser().subscribe(
-      data => {
-        this.user = data;
+    this.ass.user$.subscribe(user => {
+      if (user) {
+        // Extract the part before '@' and remove numbers
+        let usernameWithoutDomain = user.userEmailId.split('@')[0];
+        let cleanUsername = usernameWithoutDomain.replace(/\d+/g, ''); // Remove numbers
+  
+        this.user = { ...user, userName: cleanUsername }; // Update userName with the cleaned username
+        console.log('User Data:', this.user); // Debugging line
       }
-    )
+    });
   }
-
-
-
+  
+  handleSelection(event: any) {
+    const selectedValue = event.target.value;
+    if (selectedValue === 'logout') {
+      this.logout();
+    }
+  }
   getdata() {
     this.ms.getUser().subscribe(data => {
-      this.getdaa = data
-      console.log(data);
-    })
+      console.log('Merchant Data:', data); // Debugging line
+    });
   }
 
   logout() {
     this.ass.logout();
+
   }
 
-
-
-
-
-} 
+  //changed fines navbar.ts, auth, user login files
+}

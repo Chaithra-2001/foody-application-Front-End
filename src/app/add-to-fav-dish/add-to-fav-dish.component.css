@@ -16,3 +16,17 @@
     margin-left: 3vw;
     color: black;
 }
+.btns{
+  width: 120px;
+  margin-bottom: 20px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: white;
+  color: rgb(130,42,42);
+} 
+.btns:hover {
+  color: white;
+
+  box-shadow: 0 0 20px rgba(104, 85, 224, 0.6);
+  background-color: rgb(159, 63, 63);
+}

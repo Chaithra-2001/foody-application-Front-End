@@ -73,8 +73,8 @@ export class UserService {
   }
 
 
-  getUser() {
-   return this.httpclient.get("http://localhost:8088/api/v3/user/getuserdetails")
+  getUser():Observable<User> {
+   return this.httpclient.get<User>("http://localhost:8088/api/v3/user/getuserdetails")
   }
 
   clearCart() {

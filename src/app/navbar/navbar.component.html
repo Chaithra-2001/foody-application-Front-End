@@ -2,46 +2,41 @@
   
   <mat-sidenav   style="background-color:rgb(255, 252, 252);" #drawer class="sidenav" fixedInViewport   [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"[mode]="'side'"[opened]="(isHandset$ | async) === false">
 
-      <!-- <h1 routerLink="/"  *ngIf="ass.isAdmin || ass.isUser || ass.isOwner"    class="colorful-text" style="margin-top: 30px;"  >Welcome to Swift </h1> -->
-      <h1 routerLink="/"  style="margin-top: 40px;margin-left: 50px;" class="colorful-text"  >Swift </h1>
-
-    <mat-nav-list>
-     <button class="navButton1"   *ngIf="ass.isAdmin && ass.isUser==false" routerLink="ViewMyRestaurants"><mat-icon style="margin-left: -2vw;margin-bottom: -1vh;position: absolute;"> visibility</mat-icon>My Restaurant</button>
+    <h1 routerLink="/"  style="margin-top: 40px;margin-left: 50px;" class="colorful-text"  >Swift </h1>
+      
+      <mat-nav-list>
+    <button class="navButton1" *ngIf="ass.isAdmin && ass.isUser==false"   routerLink="ViewMyRestaurants"><mat-icon style="margin-left: -2vw;margin-bottom: -1vh;position: absolute;"> visibility</mat-icon>My Restaurant</button>
       <button class="navButton1"  *ngIf="ass.isAdmin && !ass.isUser" routerLink="addRestaurants"><mat-icon style="margin-left: -2vw;margin-bottom: -1vh;position: absolute;"> add</mat-icon>Add Restaurant</button>
       <button class="navButton1"  *ngIf="ass.isAdmin && !ass.isUser "  routerLink="addDishes"><mat-icon style="margin-left: -3vw;margin-bottom: -1vh;position: absolute;" > fastfood</mat-icon>Add Dishes</button>
       <button class="navButton1"  *ngIf="ass.isAdmin==false && ass.isUser==true" routerLink="favoriteRestaurant"><mat-icon style="position: absolute ;margin-left:-1.5vw;margin-top: -0.5vh;">favorite</mat-icon> Favorite Restaurant</button>
       <button class="navButton1"  *ngIf="ass.isAdmin==false && ass.isUser==true" routerLink="/favoriteDish"><mat-icon style="position: absolute ;margin-left:-2.5vw;margin-top: -0.5vh;">favorite</mat-icon> Favorite Dish</button>
+      <button   class="navButton1"  *ngIf="ass.isAdmin==false && ass.isUser==true"   routerLink="/bill-Amount"><mat-icon style="margin-bottom: -1vh;position: absolute;margin-left: -2.5vw;">shopping_cart</mat-icon>My Cart</button>
       <button class="navButton1" *ngIf="ass.isAdmin==false && ass.isUser==true"   routerLink="/order-History" ><mat-icon style="margin-bottom: -1vh;position: absolute;margin-left: -2.5vw;">history</mat-icon> Order History</button>
       <button style="font-size: larger;margin-top: 70px;" *ngIf="!ass.isAdmin && !ass.isUser  && !ass.isOwner"    class="navButton1"  routerLink="merchantRegister"><mat-icon style="position: absolute;margin-left: -2.1vw;margin-top: -0.5vh;">person_add</mat-icon>Merchant</button>
        <button style="font-size: larger;" *ngIf="!ass.isAdmin && !ass.isUser && !ass.isOwner"    class="navButton1" routerLink="Login"><mat-icon style="position: absolute;margin-left: -3.1vw;margin-top: -0.5vh;">person</mat-icon>Login</button>
        <button style="font-size: larger;"  *ngIf="ass.isAdmin || ass.isUser || ass.isOwner"   (click)="logout()"   class="navButton1" ><mat-icon style="position: absolute;margin-left: -2.1vw;margin-top: -0.5vh;">exit_to_app</mat-icon>Logout</button>
       </mat-nav-list>
+</mat-sidenav>
 
 
- </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar style="background-color:white; height: 10%; height: auto;">
 
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <h1 routerLink="/"  class="colorful-text"  >Swift </h1>
-   
       
- 
-
-      <mat-nav-list style="display: flex; margin-left: 850px; padding: 20px;">
-        
-        <button  class="log" *ngIf="ass.isAdmin==false && ass.isUser==true"   routerLink="/bill-Amount"><mat-icon style="position: absolute;margin-left: -2vw;">shopping_cart</mat-icon>My Cart</button>
-      
-        <button *ngIf="!ass.isAdmin && !ass.isUser && !ass.isOwner" class="log"  routerLink="UserRegister" > <mat-icon style="margin-bottom: -0.5vh ;margin-left:-1vw;margin-right: 1vw;">person_add</mat-icon>Sign Up</button>
-        
-  
-      </mat-nav-list>
-   
-
-     
-    </mat-toolbar>
+<div style="display: flex;">
+<div style="margin-left: 10px;margin-bottom: 10px;margin-top: 10px;">
+  <img  routerLink="/" src="../../assets/swifted logo.jpg" width="60px"  height="60px" style="margin-top: 10px; margin-left: 10px;margin-bottom: 10px;">
+</div>
+<div style="margin-left: 140vh;margin-bottom: 10px;margin-top: 10px;">
+  <h2 style="margin-top: 15px;" *ngIf="ass.isAdmin==true || ass.isUser==true"><mat-icon style="margin-bottom: -0.5vh ;;">account_circle</mat-icon> HI {{user.userName | uppercase}}</h2>
+  <h2 style="margin-top: 15px;" *ngIf="ass.isOwner==true"><mat-icon style="margin-bottom: -0.5vh ;;">account_circle</mat-icon> HI {{user.userName | uppercase}}</h2>
+ <button *ngIf="!ass.isAdmin && !ass.isUser && !ass.isOwner" style="margin-top: 15px;" class="log"  routerLink="UserRegister"  > <mat-icon style="margin-bottom: -0.5vh ;margin-left:-1vw;margin-right: 1vw;">person_add</mat-icon>Sign Up</button>
+</div>
+</div>
+  </mat-toolbar>
     <router-outlet></router-outlet>
    
   </mat-sidenav-content>
